@@ -1,0 +1,47 @@
+{% extends "layouts/base.html" %}
+{% load i18n static %}
+
+{% block overlay %}
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+{% endblock overlay %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+	<div class="row mt-4">
+        <div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card ">
+				<div class="card-header pb-0 p-3">
+					<div class="d-flex justify-content-center">
+					  	<h3 class="mb-2">Upload Image</h3>
+					</div>
+					<form class="d-flex justify-content-center" action="{% url 'detail_save' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p>
+                            <label>Your Name
+                                <input type="text" name="myName"/>
+                            </label>
+                        </p> 
+                        <p>
+                            <label>Your Image File
+                                <input type="file" name="myImage" accept="image/*" />
+                            </label>
+                        </p>
+                        <p>
+                            <input type="submit">
+                        </p>  	
+					</form>
+                    
+				</div>
+                {% if messages %}
+                    <ul class="messages d-flex justify-content-center">
+                        {% for message in messages %}
+                        <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}				
+			</div>	
+		</div>
+    </div>
+</div>
+{% endblock content %}

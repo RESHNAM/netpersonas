@@ -2,6 +2,7 @@
 django==4.2.9
 python-dotenv==1.0.1
 str2bool==1.1
+Pillow
 
 # UI
 django-admin-argon-dashboard==1.0.16
@@ -10,5 +11,13 @@ django-admin-argon-dashboard==1.0.16
 whitenoise==6.6.0
 gunicorn==21.2.0
 
-# psycopg2-binary
+psycopg2-binary
 # mysqlclient
+
+jupyter 
+notebook
+
+numpy
+pandas
+scikit-learn
+joblib

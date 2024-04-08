@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # [Django Argon Dashboard](https://appseed.us/product/argon-dashboard/django/)
 
 Open-source **[Django Dashboard](https://appseed.us/admin-dashboards/django/)** project crafted on top of **Argon Dashboard**, an open-source `Bootstrap 5` design from Creative-Tim.
@@ -203,3 +204,7 @@ This design is a pixel-perfect [Bootstrap 5](https://www.admin-dashboards.com/bo
 
 ---
 [Django Argon Dashboard](https://appseed.us/product/argon-dashboard/django/) - Minimal **Django** core provided by **[AppSeed](https://appseed.us/)**
+=======
+# netpersonas
+NetPersonas is a pioneering platform that taps into the potential of machine learning to revolutionize the corporate photography landscape. Addressing the limitations of traditional photography methods, it offers bespoke, high-quality digital imagery solutions, ensuring alignment with corporate branding and enhancing digital presence
+>>>>>>> c5b479b537e0b40aef8647bd19f325b2d7102efa

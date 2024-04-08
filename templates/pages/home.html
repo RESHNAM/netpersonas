@@ -1,0 +1,184 @@
+{% extends "layouts/base.html" %}
+{% load i18n static %}
+
+{% block title %} Home {% endblock title %}
+
+{% block overlay %}
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+{% endblock overlay %}
+
+
+
+{% block content %}
+<div class="container-fluid py-4">
+	<div class="row mt-4">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card card-carousel overflow-hidden h-100 p-0">
+				<div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item h-100 active">
+							<img src="/static/img/carousel-1.jpg" class="d-block w-100" style="background-size: cover;">
+							<div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+								<div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+									<i class="ni ni-camera-compact text-dark opacity-10"></i>
+								</div>
+								<h5 class="text-white mb-1">Get started with Argon</h5>
+								<p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
+							</div>
+						</div> 
+						<div class="carousel-item h-100">
+							<img src="/static/img/carousel-2.jpg" class="d-block w-100" style="background-size: cover;">
+							<div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+								<div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+									<i class="ni ni-bulb-61 text-dark opacity-10"></i>
+								</div>
+								<h5 class="text-white mb-1">Faster way to create web pages</h5>
+								<p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
+							</div>	
+						</div>
+						<div class="carousel-item h-100">
+							<img src="/static/img/carousel-3.jpg" class="d-block w-100" style="background-size: cover;">
+							<div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+								<div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+									<i class="ni ni-trophy text-dark opacity-10"></i>
+								</div>
+								<h5 class="text-white mb-1">Share with us your design tips!</h5>
+									<p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+							</div>
+						</div>
+						
+					</div>
+					<button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-4">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card ">
+				<div class="card-header pb-0 p-3">
+					<div class="d-flex justify-content-center">
+					  	<h3 class="mb-2">Most Popular Features</h3>
+					</div>
+					<div class="d-flex justify-content-center">
+						<p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+					</div>
+					<div class="row">
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-12 zoom">
+											<img class="card-img-top" src="/static/img/carousel-1.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">Card title</h5>
+												<p class="card-text">Some quick example text to build on the card </p>
+												<div id="more" style="display:none;">
+													<p>title and make up the bulk of the card's content.</p>
+												</div>
+												<a href="javascript:showMore()" id="link">Read More >></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-12 zoom">
+											<img class="card-img-top" src="/static/img/carousel-2.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">Card title</h5>
+												<p class="card-text">Some quick example text to build on the card </p>
+												<div id="more" style="display:none;">
+													<p>title and make up the bulk of the card's content.</p>
+												</div>
+												<a href="javascript:showMore()" id="link">Read More >></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-lg-12 zoom">
+											<img class="card-img-top" src="/static/img/carousel-3.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">Card title</h5>
+												<p class="card-text">Some quick example text to build on the card </p>
+												<div id="more" style="display:none;">
+													<p>title and make up the bulk of the card's content.</p>
+												</div>
+												<a href="javascript:showMore()" id="link">Read More >></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-4">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card ">
+				<div class="card-header pb-0 p-3">
+					<div class="d-flex justify-content-center">
+					  	<h3 class="mb-2">Photo Editing Simplified</h3>
+					</div>
+					<div class="d-flex justify-content-center">
+						<a href="{% url 'upload' %}" class="btn btn-primary">Get Started</a>	
+					</div>
+				</div>			
+			</div>		
+		</div>
+	</div>
+  {% include 'includes/footer.html' %}
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+
+<style>
+	.zoom {
+	  padding: 50px;
+	  /* background-color: rgb(133, 150, 133); */
+	  transition: transform .2s; /* Animation */
+	  /* width: 200px; */
+	  /* height: 200px; */
+	  margin: 0 auto;
+	}
+	
+	.zoom:hover {
+	  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	}
+</style>
+
+<script>
+	function showMore(){
+		//removes the link
+		document.getElementById('link').parentElement.removeChild('link');
+		//shows the #more
+		document.getElementById('more').style.display = "block";
+	}
+	
+</script>
+
+{% endblock scripts %}
