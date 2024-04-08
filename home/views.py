@@ -22,10 +22,6 @@ def upload(request):
 
 def detail_save(request):
     if request.method == "POST" and request.user.is_authenticated: 
-        # print("REQUESTPOSTDETAILS:",request.POST)
-        # print("REQUESTDETAILS:",request.FILES)
-        # print("USERDETAILS:",request.user.is_authenticated)
-        # print("USERDETAILSID:",request.user.id)
 
         #Get Name from Request Post
         my_name = request.POST.get('myName')
