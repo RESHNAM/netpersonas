@@ -101,7 +101,7 @@ class ImageListView(GenericAPIView):
             'request': request,
         }
 
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
 
         return Response(ImageSerializer(serializer, context=serializer_context).data, status=status.HTTP_200_OK)
 
