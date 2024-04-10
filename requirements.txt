@@ -3,6 +3,9 @@ django==4.2.9
 python-dotenv==1.0.1
 str2bool==1.1
 Pillow
+djangorestframework
+markdown
+django-filter
 
 # UI
 django-admin-argon-dashboard==1.0.16
@@ -21,3 +24,5 @@ numpy
 pandas
 scikit-learn
 joblib
+keras
+tensorflow
