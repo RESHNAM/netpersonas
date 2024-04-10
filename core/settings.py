@@ -15,6 +15,15 @@ from pathlib import Path
 from dotenv import load_dotenv
 from str2bool import str2bool
 
+# #Import machine learning libraries
+# import keras
+# import numpy as np
+# #from keras import backend as K
+# from keras import tensorflow.keras.backend as K
+# import tensorflow as tf
+# from tensorflow.python.keras.backend import set_session
+# from keras.applications import vgg16
+
 load_dotenv()  # take environment variables from .env.
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,6 +61,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "home",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -130,6 +140,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        # 'rest_framework.permissions.DjangoModelPermissions',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -141,6 +162,24 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
+
+# #Load Image Enhancement Model
+# def get_session():
+#     config = tf.ConfigProto()
+#     config.gpu_options.allow_growth = True
+#     return tf.Session(config=config)
+
+# K.tensorflow_backend.set_session(get_session())
+
+# config = tf.ConfigProto()
+# config.gpu_options.allow_growth = True
+# SESS = tf.Session(config=config)
+# print("model loading")
+# GRAPH1 = tf.get_default_graph()
+
+# set_session(SESS)
+# # Load the VGG model
+# VGG_MODEL = vgg16.VGG16(weights="imagenet")
 
 
 # Static files (CSS, JavaScript, Images)
