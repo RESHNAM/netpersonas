@@ -138,7 +138,7 @@ class ImageViewSet(viewsets.ModelViewSet):
 
 class ImageListView(generics.ListCreateAPIView):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows images to be viewed or created.
     """
     queryset = Image.objects.all().order_by('-created_at')
     serializer_class = ImageSerializer
