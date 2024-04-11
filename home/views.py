@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.generics import GenericAPIView
+from rest_framework import generics
 
 from .models import Image
 from .serializers import GroupSerializer, UserSerializer, ImageSerializer
@@ -72,6 +73,23 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
+class NewUserList(generics.ListCreateAPIView):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, format=None):
+        serializer = UserSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -88,22 +106,20 @@ class ImageViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-class ImageListView(GenericAPIView):
+class ImageListView(generics.ListCreateAPIView):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Image.objects.all().order_by('-created_at')
+    serializer_class = ImageSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get(self, request, format=None):
-        queryset = Image.objects.all().order_by('name')
-        serializer= ImageSerializer(queryset, many=True)
-        # return Response(serializer.data)
-
-
-        serializer_context = {
-            'request': request,
-        }
-
+    def get(self, request):
+        queryset = self.get_queryset()
+        serializer = ImageSerializer(queryset, many=True, context={'request': request})
         # import pdb; pdb.set_trace()
-
-        return Response(ImageSerializer(serializer, context=serializer_context).data, status=status.HTTP_200_OK)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
 
     def post(self, request, format=None):
         serializer = ImageSerializer(data=request.data)
