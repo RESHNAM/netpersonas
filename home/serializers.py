@@ -18,12 +18,11 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class ImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Image
-        # fields = ["author_id", 
-        #           "name", 
-        #           "cover",
-        #           "created_at", 
-        #           "updated_at"
-        #         ]
-
-        fields = '__all__'
+        fields = ['url',
+                  'author', 
+                  'name', 
+                  'cover',
+                  'created_at', 
+                  'updated_at'
+                ]
 
