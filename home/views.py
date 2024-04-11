@@ -144,7 +144,7 @@ class ImageDetailView(APIView):
 
     def get(self, request, pk, format=None):
         image = self.get_object(pk)
-        serializer = ImageSerializer(image)
+        serializer = ImageSerializer(image, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
