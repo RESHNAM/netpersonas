@@ -28,7 +28,6 @@ import requests
 API_KEY = os.environ.get('API_KEY')
 
 # Create your views here.
-
 def index(request):
 
     # Page from the theme 
@@ -75,7 +74,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class NewUserList(generics.ListCreateAPIView):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows users to be viewed or created.
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
@@ -150,7 +149,6 @@ class ImageListView(generics.ListCreateAPIView):
         # import pdb; pdb.set_trace()
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-
     def post(self, request, format=None):
         serializer = ImageSerializer(data=request.data)
 
@@ -175,6 +173,7 @@ class ImageDetailView(APIView):
     def get(self, request, pk, format=None):
         image = self.get_object(pk)
         serializer = ImageSerializer(image, context={'request': request})
+        # import pdb; pdb.set_trace()
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
@@ -189,4 +188,68 @@ class ImageDetailView(APIView):
         image = self.get_object(pk)
         image.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+# class ProcessImageView(APIView):
+"""
+All the Process that Images are exposed to.
+"""
+
+def get_object(self, request):
+    # print("ONE: ",request)
+    try:
+        return Image.objects.get(pk=request)
+    except Image.DoesNotExist:
+        raise Http404
+
+#Denoising, deblurring and enhancing lighting 
+def Denoidebluenha(request, pk):
+    # print("THREE: ",pk)
+    image = get_object(request, pk)
+    # print("IMAGE: ",image)
+    # print("IMAGEObj: ",image.cover)
+    image_path = image.cover
+
+    #Make a call to deep ai endpoint
+    headers = {
+        'x-api-key': API_KEY,
+    }
+
+    data = {
+        "enhancements": ["denoise", "deblur", "light"],
+        "width": 2000
+    }
+
+    data_dumped = {"parameters": json.dumps(data)}
+
+    response = requests.post('https://deep-image.ai/rest_api/process_result', headers=headers, files={'image': image_path},
+                data=data_dumped)
+    
+    print("DEEP-RESPONSE: ",response)
+
+    print("DEEP-RESPONSE: ",response.json())
+
+    
+    if response.status_code == 200:
+        response_json = response.json()
+        if response_json.get('status') == 'complete':
+            p = Path(response_json['result_url'])
+            final_object=urlretrieve(response_json['result_url'], p.name)
+            final_object_url=response_json['result_url']
+            print("DEEP-RESPONSE-obj: ",final_object)
+            print("DEEP-RESPONSE-url: ",final_object_url)
+        elif response_json['status'] in ['received', 'in_progress']:
+            while response_json['status'] == 'in_progress':
+                response = requests.get(f'https://deep-image.ai/rest_api/result/{response_json["job"]}',
+                            headers=headers)
+                response_json = response.json()
+                time.sleep(1)
+            if response_json['status'] == 'complete':
+                p = Path(response_json['result_url'])
+                final_object=urlretrieve(response_json['result_url'], p.name)
+                print("DEEP-RESPONSE-obj: ",final_object)
+                print("DEEP-RESPONSE-url: ",final_object_url)
+
+    return response.json()
+
 
