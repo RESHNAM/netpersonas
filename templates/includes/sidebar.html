@@ -16,16 +16,6 @@
                     {% for app in app_list %}
                         {% if app.has_perms and not app.pinned %}
                             <li class="nav-item">
-                                <!-- {% comment %} <span class="nav-link{% if app_label != app.label and app.url not in request.path|urlencode  %} collapsed{% endif %} text-white" data-bs-toggle="collapse" data-bs-target="#submenu-{{ app.app_label }}">
-                                    <span class="d-flex justify-content-between align-items-center">
-                                        <div class="text-center me-2 d-flex align-items-center justify-content-center">
-                                            <span class="sidebar-icon {{ app.icon }}"></span>
-                                        </div>
-                                        <a href="{{ app.url }}">
-                                            <span class="nav-link-text ms-1">{{ app.label|slice:10 }}{% if app.label|length > 10 %}..{% endif %}</span>
-                                        </a>
-                                    </span>
-                                </span> {% endcomment %} -->
                                 <a class="nav-link {% if app_label != app.label and app.url not in request.path|urlencode  %} collapsed{% endif %}" data-bs-toggle="collapse" data-bs-target="#submenu-{{ app.app_label }}" href="{{ app.url }}">
                                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                         <i class="{{ app.icon }} text-primary text-sm opacity-10"></i>
@@ -115,19 +105,5 @@
                 {% endif %}
             </ul>
         </div>
-        <!-- <div class="sidenav-footer mx-3 ">
-            <div class="card card-plain shadow-none" id="sidenavCard">
-                <img class="w-50 mx-auto" src="{% static 'img/illustrations/icon-documentation.svg' %}" alt="sidebar_illustration">
-                <div class="card-body text-center p-3 w-100 pt-0">
-                    <div class="docs-info">
-                        <h6 class="mb-0">Need help?</h6>
-                        <p class="text-xs font-weight-bold mb-0">Please check the links</p>
-                    </div>
-                </div>
-            </div>
-            <a href="https://appseed.us/product/argon-dashboard/django/" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">Download</a>
-            <a class="btn btn-primary btn-sm mb-0 w-100" href="https://appseed.us/product/argon-dashboard2-pro/django/" 
-            target="_blank" type="button">PRO Version</a>
-        </div> -->
     </hr>
 </aside>
