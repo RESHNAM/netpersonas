@@ -8,6 +8,7 @@ urlpatterns = [
     path('upload', views.upload, name='upload',),
     path('detailsave', views.detail_save, name='detail_save',),
     path('process-image/<int:pk>', views.Denoidebluenha, name='process-image',),
+    path('contactus', views.feedback, name='feedback',),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
