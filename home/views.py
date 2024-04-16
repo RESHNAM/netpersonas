@@ -33,8 +33,15 @@ API_KEY = os.environ.get('API_KEY')
 def index(request):
 
     # Page from the theme 
-    #return render(request, 'pages/dashboard.html')
-    return render(request, 'pages/home.html')
+    if request.method == 'POST':
+        feedb = FeedbackForm(request.POST)
+        if feedb.is_valid():
+            feedb.save()
+            messages.add_message(request, messages.INFO, 'Contact Details Submitted Successfully!')
+            return redirect('feedback')
+    else:
+        feedb = FeedbackForm()
+    return render(request, 'pages/home.html', {'form': feedb})
 
 
 def upload(request):
