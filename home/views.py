@@ -12,7 +12,9 @@ from rest_framework.request import Request
 from rest_framework.generics import GenericAPIView
 from rest_framework import generics
 
-from .models import Image
+from .models import Image, Feedback
+from django.contrib import messages
+from .forms import FeedbackForm
 from .serializers import GroupSerializer, UserSerializer, ImageSerializer
 
 import os
@@ -252,4 +254,15 @@ def Denoidebluenha(request, pk):
 
     return response.json()
 
+
+def feedback(request):
+    if request.method == 'POST':
+        feedb = FeedbackForm(request.POST)
+        if feedb.is_valid():
+            feedb.save()
+            messages.add_message(request, messages.INFO, 'Contact Details Submitted Successfully!')
+            return redirect('feedback')
+    else:
+        feedb = FeedbackForm()
+    return render(request, 'pages/feedback.html', {'form': feedb})
 
