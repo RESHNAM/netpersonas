@@ -184,7 +184,7 @@
 									<div class="card-body p-3">
 										<div class="row">
 											<div class="col-11 zoom">
-												<img class="card-img-top" src="/static/img/carousel-1.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+												<img class="card-img-top" src="/static/img/bruce-mars.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
 												<div class="card-body">
 													<h5 class="card-title">Card title</h5>
 													<p class="card-text">Some quick example text to build on the card </p>
@@ -203,7 +203,7 @@
 									<div class="card-body p-3">
 										<div class="row">
 											<div class="col-11 zoom">
-												<img class="card-img-top" src="/static/img/carousel-2.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+												<img class="card-img-top" src="/static/img/team-2.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
 												<div class="card-body">
 													<h5 class="card-title">Card title</h5>
 													<p class="card-text">Some quick example text to build on the card </p>
@@ -231,10 +231,84 @@
 					  	<h3 class="mb-2">Pricing</h3>
 					</div>
 					<div class="d-flex justify-content-center">
-						<p>
-							Details about the different packages
-						</p>
+						<p>Different prices for different plans</p>
+					</div>
+					<div class="row">
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-12">
+											<img class="card-img-top" src="/static/img/bronze.png" class="d-block" style="background-size: cover; height: 20%; width: 30%;" alt="Card image cap">
+											<div class="card-body justify-content-center">
+												<h5 class="card-title" style="color: blue;">£1.99<span style="color:rgb(134, 134, 136);font-size: small;">/month</span></h5>
+												<br>
+												<h5 class="card-title">BRONZE TIER</h5>
+												<p class="card-text">Basic profile creation and listing capabilities.</p>
+												<p class="card-text">Access to standard material listings and searches.</p>
+												<p class="card-text">Email support with a 48-hour response time.</p>
+												<p class="card-text">Data Integration: Ability to integrate with <br />
+													standard data sources such as social media platforms and basic 
+													financial transaction data..</p>
+												<div class="d-flex justify-content-center">
+													<a href="#" class="btn btn-primary">Purchase Plan</a>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-12">
+											<img class="card-img-top" src="/static/img/Silver.png" class="d-block" style="background-size: cover; height: 20%; width: 30%;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title" style="color: blue;">£5.99<span style="color:rgb(134, 134, 136);font-size: small;">/month</span></h5>
+												<br>
+												<h5 class="card-title">SILVER TIER</h5>
+												<p class="card-text">Includes all Bronze Features.</p>
+												<p class="card-text">Advanced search filters and priority listing in search <br />
+													results.</p>
+												<p class="card-text">Access to environmental impact data for listed materials.</p>
+												<p class="card-text">Live chat support.</p>
 
+												<div class="d-flex justify-content-center">
+													<a href="#" class="btn btn-primary">Purchase Plan</a>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-lg-12">
+											<img class="card-img-top" src="/static/img/gold.png" class="d-block" style="background-size: cover; height: 20%; width: 30%;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title" style="color: blue;">£8.99<span style="color:rgb(134, 134, 136);font-size: small;">/month</span></h5>
+												<br>
+												<h5 class="card-title">GOLD TIER</h5>
+												<p class="card-text">Includes all Silver features.</p>
+												<p class="card-text">Premium visibility in search results and featured listings.</p>
+												<p class="card-text">Direct access to EcoMatera's logistics and sustainability <br />
+													consulting services.</p>
+												<p class="card-text">Priority matching with waste generators and acquirers.</p>
+												<p class="card-text">Dedicated account manager and 24-hour support response time.</p>
+												<div class="d-flex justify-content-center">
+													<a href="#" class="btn btn-primary">Purchase Plan</a>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>			
 			</div>		
@@ -247,43 +321,43 @@
 					<div class="d-flex justify-content-center">
 					  	<h3 class="mb-2">Contact Us</h3>
 					</div>
-					<div class="d-flex">
-						<div class="row">
-							<div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
-								<div class="card">
-									<div class="card-body p-3">
-										<div class="row">
-											<div class="card-body">
-												<h5 class="card-title">Submit Your feedback</h5>
-												<form action="" method="post">
-													{% csrf_token %}
-													<table>
-													{{ form.as_table }}                   
-														<tr>
-															<td></td>
-															<td><input type="submit" value="Submit"></td>
-														</tr>
-													</table>
-												</form>
-											</div>
+					<!-- <div class="d-flex"> -->
+					<div class="row">
+						<div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="card-body">
+											<h5 class="card-title">Submit Your feedback</h5>
+											<form action="" method="post">
+												{% csrf_token %}
+												<table>
+												{{ form.as_table }}                   
+													<tr>
+														<td></td>
+														<td><input type="submit" value="Submit"></td>
+													</tr>
+												</table>
+											</form>
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- <div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
-								<div class="card">
-									<div class="card-body p-3">
-										<div class="row">
-											<div class="card-body">
-												<h5 class="card-title">Include map to office directions</h5>
-												
-											</div>
+						</div>
+						<div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<!-- <div class="card-body p-3">
+									<div class="row">
+										<div class="card-body">
+											<h5 class="card-title">Include map to office directions</h5>
+											
 										</div>
 									</div>
-								</div>
-							</div> -->
+								</div> -->
+							</div>
+						</div>
 						</div>																												
-					</div>
+					<!-- </div> -->
 				</div>			
 			</div>		
 		</div>
