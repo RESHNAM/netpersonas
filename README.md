@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# [Django Argon Dashboard](https://appseed.us/product/argon-dashboard/django/)
+
+# [NETPERSONAS](https://)
 
 Open-source **[Django Dashboard](https://appseed.us/admin-dashboards/django/)** project crafted on top of **Argon Dashboard**, an open-source `Bootstrap 5` design from Creative-Tim.
 The product is designed to deliver the best possible user experience with highly customizable feature-rich pages. `Material Material` has easy and intuitive responsive design whether it is viewed on retina screens or laptops.
