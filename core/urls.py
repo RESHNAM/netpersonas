@@ -40,7 +40,7 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
-    path('', include('home.urls')),
+    path('', include('home.urls'), name='home'),
     path("admin/", admin.site.urls),
     path("admin_argon/", include('admin_argon.urls')),
     path('api/', include(router.urls)),
