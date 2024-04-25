@@ -32,6 +32,10 @@ API_KEY = os.environ.get('API_KEY')
 # Create your views here.
 def index(request):
 
+    # #Count number of users in the users table
+    # no_of_user = User.objects.all().count()
+    # print("NO OF USERS: ",no_of_user)
+
     # Page from the theme 
     if request.method == 'POST':
         feedb = FeedbackForm(request.POST)
