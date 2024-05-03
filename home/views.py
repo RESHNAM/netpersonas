@@ -232,7 +232,7 @@ def Denoidebluenha(request, pk):
     data_dumped = {"parameters": json.dumps(data)}
 
     response = requests.post('https://deep-image.ai/rest_api/process_result', headers=headers, files={'image': image_path},
-                data=data_dumped)
+                data=data_dumped, timeout=60)
     
     print("DEEP-RESPONSE: ",response)
 
@@ -250,7 +250,7 @@ def Denoidebluenha(request, pk):
         elif response_json['status'] in ['received', 'in_progress']:
             while response_json['status'] == 'in_progress':
                 response = requests.get(f'https://deep-image.ai/rest_api/result/{response_json["job"]}',
-                            headers=headers)
+                            headers=headers, timeout=60)
                 response_json = response.json()
                 time.sleep(1)
             if response_json['status'] == 'complete':
