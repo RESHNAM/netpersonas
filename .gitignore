@@ -6,12 +6,12 @@
 /docs/_build/
 /node_modules/
 build/
-/staticfiles/
+# /staticfiles/
 
 #src
 #*.sqlite*
 
-.env
+# .env
 node_modules/
 # venv/
 # Byte-compiled / optimized / DLL files
@@ -136,12 +136,12 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+# .env
 # .venv
-env/
+# env/
 # venv/
-ENV/
-env.bak/
+# ENV/
+# env.bak/
 # venv.bak/
 
 # Spyder project settings
