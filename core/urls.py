@@ -44,12 +44,12 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("admin_argon/", include('admin_argon.urls')),
     path('api/', include(router.urls)),
-    path('api/new-user', views.NewUserList.as_view(), name='new-user'),
-    path('api/users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
-    path('api/image-view', views.ImageListView.as_view(), name='image-view'),
-    path('api/image-detail/<int:pk>', views.ImageDetailView.as_view(), name='image-detail'),
-    # path('api/process-image/<int:pk>', views.ProcessImageView.as_view(), name='process-image'),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    # path('api/new-user', views.NewUserList.as_view(), name='new-user'),
+    # path('api/users/<int:pk>', views.UserDetailView.as_view(), name='user-detail'),
+    # path('api/image-view', views.ImageListView.as_view(), name='image-view'),
+    # path('api/image-detail/<int:pk>', views.ImageDetailView.as_view(), name='image-detail'),
+    # # path('api/process-image/<int:pk>', views.ProcessImageView.as_view(), name='process-image'),
+    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 
