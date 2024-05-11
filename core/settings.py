@@ -111,8 +111,7 @@ DB_NAME     = os.getenv('DB_NAME'     , None)
 if DB_ENGINE and DB_NAME and DB_USERNAME:
     DATABASES = { 
         'default': {
-            # 'ENGINE'  : 'django.db.backends.' + DB_ENGINE,
-            'ENGINE'  : 'django.contrib.gis.db.backends.postgis', 
+            'ENGINE'  : 'django.db.backends.' + DB_ENGINE,
             'NAME'    : DB_NAME,
             'USER'    : DB_USERNAME,
             'PASSWORD': DB_PASS,
