@@ -75,6 +75,34 @@
                     </a>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'new-user' %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
+                    {% else %}
+                        <a href="{% url 'new-user' %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
+                    {% endif %}
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">New User API</span>
+                    </a>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    {% if request.user.is_superuser %}
+                        <a href="{% url 'user-detail' user.id %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
+                    {% else %}
+                        <a href="{% url 'user-detail' user.id %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
+                    {% endif %}
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Check User API</span>
+                    </a>
+                    </a>
+                </li>
             </ul>
         </div>
     </hr>
