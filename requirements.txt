@@ -6,6 +6,8 @@ Pillow
 djangorestframework
 markdown
 django-filter
+factory_boy
+postgis
 
 # UI
 django-admin-argon-dashboard==1.0.16
