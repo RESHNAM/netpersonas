@@ -3,7 +3,7 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-# from django.contrib.gis.db import models as modelz
+from django.contrib.gis.db import models as modelz
 
 # Create your models here.
 class Image(models.Model):
@@ -28,10 +28,11 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.name + "-" +  self.email
-    
-# class Location(modelz.Model):
-#     name = modelz.CharField(max_length=50, default = 'Unknown location')
-#     mpoint = modelz.PointField()
 
-#     def __str__(self):
-#         return self.name
+
+class Location(modelz.Model):
+    name = modelz.CharField(max_length=50, default = 'Unknown location')
+    mpoint = modelz.PointField()
+
+    def __str__(self):
+        return self.name
