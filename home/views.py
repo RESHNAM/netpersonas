@@ -13,6 +13,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework import generics
 from django.contrib.sessions.models import Session
 from django.utils import timezone
+from django.conf import settings
 
 from .models import Image, Feedback
 from django.contrib import messages
@@ -30,6 +31,7 @@ from urllib.request import urlretrieve
 import requests
 
 API_KEY = os.environ.get('API_KEY')
+MEDIA_URL = settings.MEDIA_URL
 
 # Create your views here.
 def index(request):
@@ -60,16 +62,30 @@ def detail_save(request):
 
         #Get Name from Request Post
         my_name = request.POST.get('myName')
-
         #Get Image from Request Files
         my_image = request.FILES.get('myImage')
-
+        #Get System User
         sys_user = User.objects.get(id=request.user.id)
 
         #Save the image to database
         Image.objects.create(author=sys_user, name=my_name, cover=my_image)
         messages.success(request, "Image Uploaded Successfully!")
-        return redirect('upload')
+
+        # fetch the data and render it to the template
+        active_user_image = Image.objects.filter(author=sys_user, name=my_name)
+        # print(active_user_image)
+        # context = {'active_user_image': active_user_image}
+        # return redirect('upload')
+        return render(request, "pages/upload.html", {'active_user_image': active_user_image, 'MEDIA_URL':MEDIA_URL})
+    
+    elif request.method == "GET" and request.user.is_authenticated:
+
+        # fetch the data and render it to the template
+        active_user_image = Image.objects.filter(author=sys_user, name=my_name)
+        # print(active_user_image)
+        context = {'active_user_image': active_user_image}
+        # return redirect('upload')
+        return render(request, "pages/upload.html", context)
     else:
         messages.warning(request, 'Signup First!')
         return redirect('upload')

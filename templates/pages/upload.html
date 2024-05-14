@@ -38,11 +38,64 @@
                             <input type="submit">
                         </p>  	
 					</form>
-                    
 				</div>
+                <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                    <button type="button" class="btn btn-outline-primary btn-sm">Retrieve Details</button>
+                </div> -->
+                
                 				
 			</div>	
 		</div>
     </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card z-index-2 h-100">
+                <div class="card-header pb-0 pt-3 bg-transparent">
+                    <h6 class="text-capitalize">User Details Overview</h6>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center ">
+                        <tbody>
+                            {% for active_image in active_user_image %}
+                            <tr>
+                                <td class="w-30">
+                                    <div class="d-flex px-2 py-1 align-items-center">
+                                        <img class="image" src="{{ MEDIA_URL }}{{active_image.cover}}" style="height: 300px; width: 300px;">
+                                  </div>
+                                  <div class="ms-4">
+                                        <p class="text-xs font-weight-bold mb-0">Name:</p>
+                                        <h6 class="text-sm mb-0">{{active_image.name}}</h6>
+                                    </div>
+                              </td>
+                                
+                                <!-- <p> {{active_image.author}} - {{active_image.name}} - {{active_image.cover}}</p> -->
+                                
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        
+                    </table>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Enhance Image</button>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <button type="button" class="btn btn-outline-primary btn-sm">Background Customization</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'includes/footer.html' %}
 </div>
 {% endblock content %}
+
+<!-- {% block scripts %}
+<style>
+	
+	.image {
+
+	}
+</style>
+
+{% endblock scripts %} -->
