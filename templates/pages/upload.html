@@ -7,7 +7,7 @@
 
 {% block content %}
 {% if messages %}
-    <ul class="messages d-flex justify-content-center alert alert-success" role="alert">
+    <ul class="messages d-flex justify-content-center alert alert-success alert-dismissible fade show" role="alert">
         {% for message in messages %}
         <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
         {% endfor %}
