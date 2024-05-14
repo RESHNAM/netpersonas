@@ -9,7 +9,6 @@ urlpatterns = [
     path('detailsave', views.detail_save, name='detail_save',),
     path('process-image/<int:pk>/', views.Denoidebluenha, name='process-image',),
     path('contactus', views.feedback, name='feedback',),
-    # path('api/', include(router.urls)),
     path('api/new-user', views.NewUserList.as_view(), name='new-user'),
     path('api/users/<int:pk>/', views.UserDetailView.as_view(), name='user-detail'),
     path('api/image-view', views.ImageListView.as_view(), name='image-view'),
