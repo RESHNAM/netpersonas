@@ -80,7 +80,7 @@
                     {% if request.user.is_superuser %}
                         <a href="{% url 'home:new-user' %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
                     {% else %}
-                        <a href="{% url 'home:new-user' %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
+                        <a href="#" class="nav-link {% if 'index' in segment %} active {% endif %}">
                     {% endif %}
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -94,7 +94,7 @@
                     {% if request.user.is_superuser %}
                         <a href="{% url 'home:user-detail' user.id %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
                     {% else %}
-                        <a href="{% url 'home:user-detail' user.id %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
+                        <a href="#" class="nav-link {% if 'index' in segment %} active {% endif %}">
                     {% endif %}
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
@@ -108,7 +108,7 @@
                     {% if request.user.is_superuser %}
                         <a href="{% url 'home:image-view' %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
                     {% else %}
-                        <a href="{% url 'home:image-view' %}" class="nav-link {% if 'index' in segment %} active {% endif %}">
+                        <a href="#" class="nav-link {% if 'index' in segment %} active {% endif %}">
                     {% endif %}
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
