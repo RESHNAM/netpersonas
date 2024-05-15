@@ -22,6 +22,7 @@ from .serializers import GroupSerializer, UserSerializer, ImageSerializer
 
 import os
 import time
+import requests
 import json
 from pathlib import Path
 
@@ -32,6 +33,7 @@ import requests
 
 API_KEY = os.environ.get('API_KEY')
 MEDIA_URL = settings.MEDIA_URL
+VANCE_URL = 'https://api-service.vanceai.com/web_api/v1/'
 
 # Create your views here.
 def index(request):
@@ -49,7 +51,7 @@ def index(request):
             return redirect('feedback')
     else:
         feedb = FeedbackForm()
-    return render(request, 'pages/home.html', {'form': feedb})
+    return render(request, 'pages/home-update.html', {'form': feedb})
 
 
 def upload(request):
@@ -310,3 +312,17 @@ def get_all_logged_in_users():
     # Query all logged in users based on id list
     print("CONFIRM: ",User.objects.filter(id__in=uid_list))
     return User.objects.filter(id__in=uid_list)
+
+
+def enhance_upload(request):
+
+    # response = requests.post('https://api-service.vanceai.com/web_api/v1/upload',
+    #     files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+    #     data={'api_token': '1234567890abcdefg'},
+    # )
+
+    response = requests.post(VANCE_URL + 'upload',
+        files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        data={'api_token': ''},
+    )
+
