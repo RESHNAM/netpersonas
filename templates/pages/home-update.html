@@ -237,7 +237,7 @@
     </style>
 	<style>
 		#navbar-spy{
-    		background:rgba(255,255,255,0);
+    		/* background:rgba(255,255,255,0); */
     		transition:background 1.5s ease;
     		position:relative;
    			z-index:99;
@@ -251,7 +251,7 @@
     		z-index:999;
 		}
 		#slider{
-    		margin-top:-50px;
+    		margin-top:-100px;
 		}
 	</style>
 </head>
@@ -275,7 +275,6 @@
 					
 						<a class="logo" href="#">
 						    <img class="logo-dark" src="static/img/logo-update-light.jpg" alt="appy Logo" length="80px" width="50px">
-							<!-- <img class="logo-dark" src="static/img/logo-update.jpg" alt="appy Logo"> -->
 						    <img class="logo-light" src="static/img/logo-update.jpg" alt="appy Logo" length="80px" width="50px">
 					    </a>
 					</div>
@@ -821,7 +820,7 @@
 						</div>
 						<div class="form-request">
 							<div class="row">
-								<form class="mb-0">
+								<form class="mb-0" id="contact-us">
 									<div class="col-xs-12 col-sm-12 col-md-6">
 										<input type="text" class="form-control" name="your-name" placeholder="Your Name">
 									</div>
@@ -831,7 +830,7 @@
 									</div>
 									<!-- .col-md-6 end -->
 									<div class="col-xs-12 col-sm-12 col-md-12">
-										<select class="form-control">
+										<select class="form-control" name="subject" id="subject">
 											<option>Subject</option>
 											<option>Image Enhancement</option>
 											<option>Background Customization</option>
