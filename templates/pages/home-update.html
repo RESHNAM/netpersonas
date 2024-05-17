@@ -235,6 +235,25 @@
           src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2') format('woff2');
         }
     </style>
+	<style>
+		#navbar-spy{
+    		background:rgba(255,255,255,0);
+    		transition:background 1.5s ease;
+    		position:relative;
+   			z-index:99;
+		}
+		#navbar-spy.header-sticky{
+    		/* background:#fff; */
+    		position:fixed;
+    		top:0;
+    		left:0;
+    		right:0;
+    		z-index:999;
+		}
+		#slider{
+    		margin-top:-50px;
+		}
+	</style>
 </head>
 
 <body class="body-scroll">
@@ -255,8 +274,9 @@
 					    </button>
 					
 						<a class="logo" href="#">
-						    <img class="logo-dark" src="static/img/logo-update.jpg" alt="appy Logo" length="80px" width="50px">
-						    <img class="logo-light" src="static/img/logo-update-light.jpg" alt="appy Logo" length="80px" width="50px">
+						    <img class="logo-dark" src="static/img/logo-update-light.jpg" alt="appy Logo" length="80px" width="50px">
+							<!-- <img class="logo-dark" src="static/img/logo-update.jpg" alt="appy Logo"> -->
+						    <img class="logo-light" src="static/img/logo-update.jpg" alt="appy Logo" length="80px" width="50px">
 					    </a>
 					</div>
 					<div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
