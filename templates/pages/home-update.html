@@ -19,7 +19,7 @@
 	<!-- Stylesheets
     ============================================= -->
 	<link href="static/css/external.css" rel="stylesheet">
-	<link href="static/css/bootstrap.min.css" rel="stylesheet">	
+	<!-- <link href="static/css/bootstrap.min.css" rel="stylesheet">	 -->
     <link href="static/css/style.css" rel="stylesheet">
 	<link
     	rel="stylesheet"
@@ -235,15 +235,15 @@
           src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2') format('woff2');
         }
     </style>
-	<style>
+	<!-- <style>
 		#navbar-spy{
-    		/* background:rgba(255,255,255,0); */
+    		background:rgba(255,255,255,0);
     		transition:background 1.5s ease;
     		position:relative;
    			z-index:99;
 		}
 		#navbar-spy.header-sticky{
-    		/* background:#fff; */
+    		background:#fff;
     		position:fixed;
     		top:0;
     		left:0;
@@ -252,8 +252,14 @@
 		}
 		#slider{
     		margin-top:-100px;
+		} 
+
+		.header .navbar-collapse {
+		padding-right: 0;
+		padding-left: 0;
 		}
-	</style>
+			
+	</style> -->
 </head>
 
 <body class="body-scroll">
@@ -278,8 +284,30 @@
 						    <img class="logo-light" src="static/img/logo-update.jpg" alt="appy Logo" length="80px" width="50px">
 					    </a>
 					</div>
+					<!-- <div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
+						<ul class="nav navbar-nav nav-pos-right navbar-right nav-split">
+							<li class="active"><a data-scroll="scrollTo" href="#slider">home</a>
+							</li>
+							<li><a data-scroll="scrollTo" href="#about">about</a>
+							<li><a data-scroll="scrollTo" href="#feature2">feature</a>
+							</li>
+							
+							</li>
+							<li><a data-scroll="scrollTo" href="#team">team</a>
+							</li>
+							<li><a data-scroll="scrollTo" href="#banner3">why us</a>
+							</li>
+							<li><a data-scroll="scrollTo" href="#testimonial">Feedback</a>
+							</li>
+							<li><a data-scroll="scrollTo" href="#banner">Free Consultation</a>
+							</li>
+							<li><a href="#">blog</a>
+							</li>
+						</ul>
+					</div> -->
+
 					<div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
-						<ul class="nav navbar-nav nav-pos-right navbar-left nav-split">
+						<ul class="nav navbar-nav nav-pos-right navbar-right nav-split">
 							<li class="active"><a data-scroll="scrollTo" href="#slider">home</a>
 							</li>
 							<li><a data-scroll="scrollTo" href="#about">about</a>
@@ -305,7 +333,7 @@
 
 		</header><!-- Slider #1
 		=== === === === === === === === === === === === === === -->
-		<section id="slider" class="section slider carousel slider slider-navs" data-slide="1" data-autoplay="true" data-nav="true" data-dots="false" data-space="0" data-loop="true" data-speed="800">
+		<!-- <section id="slider" class="section slider carousel slider slider-navs" data-slide="1" data-autoplay="true" data-nav="true" data-dots="false" data-space="0" data-loop="true" data-speed="800">
 			<div class="slide--item bg-overlay bg-overlay-dark">
 				<div class="bg-section">
 					<img src="static/img/bg-profile.jpg" alt="bg">
@@ -324,11 +352,9 @@
 							</div>
 						</div>
 					</div>
-					<!-- .row end -->
 				</div>
-				<!-- .container end -->
 			</div>
-			<!-- .slide-item end -->
+			
 			<div class="slide--item bg-overlay bg-overlay-dark">
 				<div class="bg-section">
 					<img src="static/img/vr-bg.jpg" alt="bg">
@@ -347,11 +373,8 @@
 							</div>
 						</div>
 					</div>
-					<!-- .row end -->
 				</div>
-				<!-- .container end -->
 			</div>
-			<!-- .slide-item end -->
 			
 			<div class="slide--item bg-overlay bg-overlay-dark">
 				<div class="bg-section">
@@ -371,12 +394,9 @@
 							</div>
 						</div>
 					</div>
-					<!-- .row end -->
 				</div>
-				<!-- .container end -->
 			</div>
-			<!-- .slide-item end -->
-		</section>
+		</section> -->
 		<!-- #slider end -->
 		<!-- About
 		=== === === === === === === === === === === === === === -->
