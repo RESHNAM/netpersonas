@@ -889,7 +889,7 @@ section {
   -ms-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-attachment: fixed;
+  /*background-attachment: fixed;*/
   background-repeat: no-repeat;
   background-position: center center;
   width: 100%;
@@ -3688,7 +3688,7 @@ ul.comments-list ul.comment-children ul .comment-body .comment {
     #BOXED LAYOUT
 \*------------------------------------*/
 .body-boxed {
-  background: url(../img/pattern.png);
+  background: url(../images/background/pattern.png);
 }
 .body-boxed .header-fixed .affix {
   box-shadow: none;
