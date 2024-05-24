@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -15,7 +16,9 @@
 	<!-- Fonts
     ============================================= -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i%7CMerriweather:300,300i,400,400i,700,700i,900,900i' rel='stylesheet' type='text/css'>
-
+	<link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
 	<!-- Stylesheets
     ============================================= -->
 	<link href="static/css/external.css" rel="stylesheet">
@@ -237,13 +240,13 @@
     </style>
 	<style>
 		#navbar-spy{
-    		background:rgba(255,255,255,0);
+    		background: transparent;
     		transition:background 1.5s ease;
     		position:relative;
    			z-index:99;
 		}
 		#navbar-spy.header-sticky{
-    		background:#fff;
+    		background: transparent;
     		position:fixed;
     		top:0;
     		left:0;
@@ -254,17 +257,40 @@
     		margin-top:-100px;
 		} 
 
-		/* .header .navbar-collapse {
-			padding-right: 0;
-			padding-left: 0;
-			background:rgba(255,255,255,0);
+		.navbar {
+			font-family: 'Open Sans', sans-serif;
 		}
 
-		.nav .navbar-nav 
-		.nav-pos-right .nav-split{
-			position:relative;
-   			z-index:99;
-		} */
+		.navbar-header {
+			display: inline-block;			
+		}
+
+      	.navbar .nav > li > a {        
+        	color: #ffffff;
+		}
+
+      	.navbar .nav > li > a:hover {
+        	color: #000000;
+		}
+
+		#navbar-ul {
+			list-style-type: none;
+  			margin: 0;
+  			padding: 0;
+
+		}
+
+		#navbar-ul-li {
+			display: inline;
+		}
+
+		#navbar-ul-li.active {
+			color: #000000;			
+		}
+
+		#navbar-collapse-1 {
+			padding: 0 2px 80px 350px;
+		}
 			
 	</style>
 </head>
@@ -290,48 +316,19 @@
 						    <img class="logo-dark" src="static/img/logo-update-light.jpg" alt="appy Logo" length="80px" width="50px">
 						    <img class="logo-light" src="static/img/logo-update.jpg" alt="appy Logo" length="80px" width="50px">
 					    </a>
-					</div>
-					<!-- <div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
-						<ul class="nav navbar-nav nav-pos-right navbar-right nav-split">
-							<li class="active"><a data-scroll="scrollTo" href="#slider">home</a>
-							</li>
-							<li><a data-scroll="scrollTo" href="#about">about</a>
-							<li><a data-scroll="scrollTo" href="#feature2">feature</a>
-							</li>
-							
-							</li>
-							<li><a data-scroll="scrollTo" href="#team">team</a>
-							</li>
-							<li><a data-scroll="scrollTo" href="#banner3">why us</a>
-							</li>
-							<li><a data-scroll="scrollTo" href="#testimonial">Feedback</a>
-							</li>
-							<li><a data-scroll="scrollTo" href="#banner">Free Consultation</a>
-							</li>
-							<li><a href="#">blog</a>
-							</li>
-						</ul>
-					</div> -->
-					<div class="collapse navbar-collapse" id="navbar-collapse-1">
-						<ul class="nav navbar-nav nav-pos-right nav-split pull-right">
-							<li class="active"><a data-scroll="scrollTo" href="#slider">home</a>
-							</li>
-							<li><a data-scroll="scrollTo" href="#about">about</a>
-							<li><a data-scroll="scrollTo" href="#feature2">feature</a>
-							</li>
-							
-							</li>
-							<li><a data-scroll="scrollTo" href="#team">team</a>
-							</li>
-							<li><a data-scroll="scrollTo" href="#banner3">why us</a>
-							</li>
-							<li><a data-scroll="scrollTo" href="#testimonial">Feedback</a>
-							</li>
-							<li><a data-scroll="scrollTo" href="#banner">Free Consultation</a>
-							</li>
-							<li><a href="#">blog</a>
-							</li>
-						</ul>
+
+						<div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
+							<ul class="nav navbar-nav nav-pos-right nav-split" id="navbar-ul">
+								<li class="active" id="navbar-ul-li"><a data-scroll="scrollTo" href="#slider">home</a></li>
+								<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#about">about</a></li>
+								<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#feature2">feature</a></li>
+								<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#team">team</a></li>
+								<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#banner3">why us</a></li>
+								<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#testimonial">Feedback</a></li>
+								<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#banner">Free Consultation</a></li>
+								<!-- <li id="navbar-ul-li"><a href="#">blog</a></li> -->
+							</ul>
+						</div>
 					</div>
 					<!--/.nav-collapse -->
 				</div>
