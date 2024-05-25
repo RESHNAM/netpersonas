@@ -27,12 +27,12 @@
 
     /* ------------------ HEADER AFFIX ------------------ */
 
-    var $navAffix = $(".header-fixed .navbar-fixed-top");
-    $navAffix.affix({
-        offset: {
-            top: 50
-        }
-    });
+    // var $navAffix = $(".header-fixed .navbar-fixed-top");
+    // $navAffix.affix({
+    //     offset: {
+    //         top: 50
+    //     }
+    // });
 
     /* ------------------  AJAX MAILCHIMP ------------------ */
 
