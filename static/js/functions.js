@@ -25,33 +25,6 @@
         $(this).remove();
     });
 
-    /* ------------------ HEADER AFFIX ------------------ */
-
-    // var $navAffix = $(".header-fixed .navbar-fixed-top");
-    // $navAffix.affix({
-    //     offset: {
-    //         top: 50
-    //     }
-    // });
-
-    /* ------------------  AJAX MAILCHIMP ------------------ */
-
-    $('.mailchimp').ajaxChimp({
-        url: "http://wplly.us5.list-manage.com/subscribe/post?u=91b69df995c1c90e1de2f6497&id=aa0f2ab5fa", //Replace with your own mailchimp Campaigns URL.
-        callback: chimpCallback
-
-    });
-
-    function chimpCallback(resp) {
-        if (resp.result === 'success') {
-            $('.subscribe-alert').html('<h5 class="alert alert-success">' + resp.msg + '</h5>').fadeIn(1000);
-            //$('.subscribe-alert').delay(6000).fadeOut();
-
-        } else if (resp.result === 'error') {
-            $('.subscribe-alert').html('<h5 class="alert alert-danger">' + resp.msg + '</h5>').fadeIn(1000);
-        }
-    }
-
     /* ------------------  AJAX CAMPAIGN MONITOR  ------------------ */
 
     $('#campaignmonitor').submit(function(e) {
@@ -68,31 +41,6 @@
             });
     });
 
-    /* ------------------ OWL CAROUSEL ------------------ */
-
-    $(".carousel").each(function() {
-        var $Carousel = $(this);
-        $Carousel.owlCarousel({
-            loop: $Carousel.data('loop'),
-            autoplay: $Carousel.data("autoplay"),
-            margin: $Carousel.data('space'),
-            nav: $Carousel.data('nav'),
-            dots: $Carousel.data('dots'),
-            dotsSpeed: $Carousel.data('speed'),
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: $Carousel.data('slide-res')
-                },
-                1000: {
-                    items: $Carousel.data('slide'),
-                }
-            }
-        });
-    });
-
     /* ------------------  SCROLL TO ------------------ */
 
     var aScroll = $('a[data-scroll="scrollTo"]');
@@ -105,19 +53,6 @@
             }, 1000);
         }
     });
-
-    /* ------------------  WOW Animated ------------------ */
-    var wow = new WOW({
-
-        boxClass: 'wow', // animated element css class (default is wow)
-        animateClass: 'animated', // animation css class (default is animated)
-        offset: 50, // distance to the element when triggering the animation (default is 0)
-        mobile: false, // trigger animations on mobile devices (default is true)
-        live: true // act on asynchronously loaded content (default is true)
-
-    });
-
-    wow.init();
 
     /* ------------------  Youtube Background  ------------------ */
     $(".bg-ytvideo").each(function() {
@@ -158,16 +93,6 @@
             "{videoURL:'http://youtu.be/" + vidId + "',containment:'self',autoPlay:" + vidAutoPlay + ", mute:" + vidMute + ", startAt:" + vidStartAt + ", opacity:" + vidOpacity + ",showYTLogo:" + vidShowPluginLogo + ",showControls:" + vidShowControls + ",stopMovieOnBlur:false,mobileFallbackImage:'" + vidFallBackImg + "'}"
         );
     });
-
-    $(".bg-ytvideo").mb_YTPlayer();
-	
-	/* ------------------  COUNTER UP ------------------ */
-
-    $(".counting").counterUp({
-        delay: 10,
-        time: 1000
-    });
-
 
 }(jQuery));
 
