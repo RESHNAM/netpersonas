@@ -25,6 +25,44 @@
         $(this).remove();
     });
 
+    /* ------------------ OWL CAROUSEL ------------------ */
+
+    $(".carousel").each(function() {
+        var $Carousel = $(this);
+        $Carousel.owlCarousel({
+            loop: $Carousel.data('loop'),
+            autoplay: $Carousel.data("autoplay"),
+            margin: $Carousel.data('space'),
+            nav: $Carousel.data('nav'),
+            dots: $Carousel.data('dots'),
+            dotsSpeed: $Carousel.data('speed'),
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: $Carousel.data('slide-res')
+                },
+                1000: {
+                    items: $Carousel.data('slide'),
+                }
+            }
+        });
+    });
+
+    /* ------------------  WOW Animated ------------------ */
+    var wow = new WOW({
+
+        boxClass: 'wow', // animated element css class (default is wow)
+        animateClass: 'animated', // animation css class (default is animated)
+        offset: 50, // distance to the element when triggering the animation (default is 0)
+        mobile: false, // trigger animations on mobile devices (default is true)
+        live: true // act on asynchronously loaded content (default is true)
+
+    });
+
+    wow.init();
+
     /* ------------------  AJAX CAMPAIGN MONITOR  ------------------ */
 
     $('#campaignmonitor').submit(function(e) {
