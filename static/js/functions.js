@@ -10,6 +10,9 @@
 	7.  WOW
 	8.  Youtube Background
 */
+// import WOW from 'wow.js'
+// window.WOW = require('wowjs').WOW;
+
 (function($) {
     "use strict";
 
