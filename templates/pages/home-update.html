@@ -239,6 +239,57 @@
           src: url('chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/fonts/CircularXXWeb-Bold.woff2') format('woff2');
         }
     </style>
+	<style>
+		input {
+			border: none;
+			outline: none;
+			background-color: transparent;
+			padding: 15px 20px;
+			color: #fff;
+			/* flex: 1; */
+		}
+		form input[type="email"] {
+			flex: 1;
+			font-size: 1.3em;
+			}
+		form input[type="submit"] {
+			/* background-color: #fff; */
+			color: #fff;
+			border-left: 2px solid #f1f1f1;
+			cursor: pointer;
+			text-transform: uppercase;
+			font-size: 1.3em;
+			font-weight: bold;
+		}
+		form input[type="submit"]:hover {
+			opacity: 0.7;
+		}
+		@media screen and (max-width: 775px) {
+			form input[type="email"] {
+				font-size: 1em;
+			}
+		}
+		@media screen and (max-width: 600px) {
+			form input[type="email"] {
+				font-size: 1em;
+				border-bottom: 1px solid #333;
+				color: #333;
+			}
+			::placeholder {
+				font-size: large;
+				color: #333;
+				opacity: 0.5;
+			}
+			form input[type="submit"] {
+				color: #fff;
+				border-left: none;
+				background-color: #333;
+				width: 100px;
+				margin: 20px auto;
+				font-size: 1em;
+			}
+		}
+	</style>
 </head>
 
 <body class="body-scroll">
@@ -273,6 +324,7 @@
 							<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#testimonial">Feedback</a></li>
 							<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#pricing">Pricing</a></li>
 							<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#banner">Free Consultation</a></li>
+							<li id="navbar-ul-li"><a data-scroll="scrollTo" href="{% url 'login' %}">Log In</a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -441,7 +493,7 @@
 								<i class="icon icon-noun_741298_cc"></i>
 							</div>
 							<div class="feature--content">
-								<h3>International Law</h3>
+								<h3>Image Upscaler</h3>
 								<p>Lorem ipsum dolor sit amet, conse adipise elit, sed eiusmod tempor incidide.</p>
 							</div>
 						</div>
@@ -456,7 +508,7 @@
 								<i class="icon icon-noun_741291_cc"></i>
 							</div>
 							<div class="feature--content">
-								<h3>Financial Law</h3>
+								<h3>Image Compressor</h3>
 								<p>Lorem ipsum dolor sit amet, conse adipise elit, sed eiusmod tempor incidide.</p>
 							</div>
 						</div>
@@ -471,7 +523,7 @@
 								<i class="icon icon-noun_740314_cc"></i>
 							</div>
 							<div class="feature--content">
-								<h3>Technology Law</h3>
+								<h3>Image Sharpener</h3>
 								<p>Lorem ipsum dolor sit amet, conse adipise elit, sed eiusmod tempor incidide.</p>
 							</div>
 						</div>
@@ -508,20 +560,20 @@
 								<img src="static/img/team-1.jpg" alt="member"/>
 								<div class="member-overlay">
 									<div class="member-social">
-										<div class=" pos-vertical-center">
+										<!-- <div class=" pos-vertical-center">
 											<a href="#"><i class="fa fa-facebook"></i></a>
 											<a href="#"><i class="fa fa-twitter"></i></a>
 											<a href="#"><i class="fa fa-google-plus"></i></a>
 											<a href="#"><i class="fa fa-linkedin"></i></a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<!-- .memebr-ovelay end -->
 							</div>
 							<!-- .member-img end -->
 							<div class="member-info">
-								<h5>Mark Smith</h5>
-								<h6>CEO & Manager</h6>
+								<h6>Image Enhancement</h6>
+								<!-- <h6>CEO & Manager</h6> -->
 							</div>
 							<!-- .member-info end -->
 						</div>
@@ -536,20 +588,20 @@
 								<img src="static/img/team-2.jpg" alt="member"/>
 								<div class="member-overlay">
 									<div class="member-social">
-										<div class=" pos-vertical-center">
+										<!-- <div class=" pos-vertical-center">
 											<a href="#"><i class="fa fa-facebook"></i></a>
 											<a href="#"><i class="fa fa-twitter"></i></a>
 											<a href="#"><i class="fa fa-google-plus"></i></a>
 											<a href="#"><i class="fa fa-linkedin"></i></a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<!-- .memebr-ovelay end -->
 							</div>
 							<!-- .member-img end -->
 							<div class="member-info">
-								<h5>Ryan Printz</h5>
-								<h6>Family Lawyer</h6>
+								<h6>Background Customization</h6>
+								<!-- <h6>Family Lawyer</h6> -->
 							</div>
 							<!-- .member-info end -->
 						</div>
@@ -564,26 +616,29 @@
 								<img src="static/img/team-3.jpg" alt="member"/>
 								<div class="member-overlay">
 									<div class="member-social">
-										<div class=" pos-vertical-center">
+										<!-- <div class=" pos-vertical-center">
 											<a href="#"><i class="fa fa-facebook"></i></a>
 											<a href="#"><i class="fa fa-twitter"></i></a>
 											<a href="#"><i class="fa fa-google-plus"></i></a>
 											<a href="#"><i class="fa fa-linkedin"></i></a>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								<!-- .memebr-ovelay end -->
 							</div>
 							<!-- .member-img end -->
 							<div class="member-info">
-								<h5>Steve Martin</h5>
-								<h6>Financial Lawyer</h6>
+								<h6>Style Adaptation</h6>
+								<!-- <h6>Financial Lawyer</h6> -->
 							</div>
 							<!-- .member-info end -->
 						</div>
 						<!-- .member end -->
 					</div>
 					<!-- .col-md-3 end -->
+				</div>
+				<div class="d-flex justify-content-center" style="padding-left: 500px;">
+					<a href="{% url 'home:upload' %}" class="btn btn-primary">Get Started</a>	
 				</div>
 			</div>
 		</section> <!-- #team end  -->
@@ -604,7 +659,7 @@
 						<div class="row clearfix">
 							<div class="col-xs-12 col-sm-12 col-md-12">
 								<div class="heading heading-1 wow fadeInUp" data-wow-duration="1s">
-									<h2 class="heading--title">Why Hire Us ?</h2>
+									<h2 class="heading--title">Why Us ?</h2>
 									<p class="heading--desc">Lorem ipsum dolor amet, consectetur adipisice elite sede eiusmod tempor incidide labeore dolore magna.</p>
 									<div class="heading--divider mb-80"></div>
 								</div>
@@ -938,20 +993,22 @@
 			<div class="footer-widget">
 				<div class="container">
 					<div class="row">
-						<div class="col-xs-12 col-sm-6 col-md-4 footer--widget-about">
+						<div class="col-xs-12 col-sm-6 col-md-3 footer--widget-about">
+							<div class="footer--widget-title">
+								<h5>About Us</h5>
+							</div>
 							<div class="footer--widget-content">
-								<img class="mb-20" src="static/img/logo-update-light.jpg" alt="logo" length="80px" width="50px">
 								<p>Proin gravida nibh vel velit auctor aliquet anean lorem quis. bindum auctor, nisi elite conset ipsums sagtis id duis sed odio sit.</p>
 								<div class="clearfix"></div>
 								<div class="social">
-									<a class="share-twitter" href="#"><i class="fa fa-twitter"></i></a>
-									<a class="share-facebook" href="#"><i class="fa fa-facebook"></i></a>
-									<a class="share-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-									<a class="share-pinterest" href="#"><i class="fa fa-pinterest-p"></i></a>
+									<a class="share-twitter" href="#"><i class="fab fa-twitter"></i></a>
+									<a class="share-facebook" href="#"><i class="fab fa-facebook"></i></a>
+									<a class="share-linkedin" href="#"><i class="fab fa-linkedin"></i></a>
+									<a class="share-pinterest" href="#"><i class="fab fa-pinterest-p"></i></a>
 								</div>
 							</div>
 						</div><!-- .col-md-4 end -->
-						<div class="col-xs-12 col-sm-6 col-md-4 footer--widget-recent">
+						<!-- <div class="col-xs-12 col-sm-6 col-md-4 footer--widget-recent">
 							<div class="footer--widget-title">
 								<h5>Blog Posts</h5>
 							</div>
@@ -969,7 +1026,7 @@
 											<span><i class="fa fa-comment-o"></i> 6 comments</span>
 										</div>
 									</div>
-								</div><!-- .entry end -->
+								</div>
 								
 								<div class="entry">
 									<div class="entry--img">
@@ -984,7 +1041,7 @@
 											<span><i class="fa fa-comment-o"></i> 3 comments</span>
 										</div>
 									</div>
-								</div><!-- .entry end -->
+								</div>
 								
 								<div class="entry">
 									<div class="entry--img">
@@ -999,10 +1056,47 @@
 											<span><i class="fa fa-comment-o"></i> 5 comments</span>
 										</div>
 									</div>
-								</div><!-- .entry end -->
+								</div>
+							</div>
+						</div> -->
+						<div class="col-xs-12 col-sm-6 col-md-3 footer--widget-about">
+							<div class="footer--widget-title">
+								<h5>Links</h5>
+							</div>
+							<div class="footer--widget-content">
+								<ul>
+									<div class="entry--content">
+										<div class="entry--title">
+											<a href="#">Clients</a>
+										</div>
+									</div>
+									<div class="entry--content">
+										<div class="entry--title">
+											<a href="#">Careers</a>
+										</div>
+									</div>
+									<div class="entry--content">
+										<div class="entry--title">
+											<a href="#">FAQ</a>
+										</div>
+									</div>
+								</ul>
 							</div>
 						</div><!-- .col-md-4 end -->
-						<div class="col-xs-12 col-sm-6 col-md-4 footer--widget-contact">
+						<div class="col-xs-12 col-sm-6 col-md-3 footer--widget-about">
+							<div class="footer--widget-title">
+								<h5>Newsletter</h5>
+							</div>
+							<div class="footer--widget-content">
+								<p>Proin gravida nibh vel velit auctor aliquet anean lorem quis. bindum auctor, nisi elite conset ipsums sagtis id duis sed odio sit.</p>
+
+								<form action="">
+									<input type="email" name="" id="" placeholder="enter your email ...">
+									<input type="submit" value="subscribe">
+								</form>
+							</div>
+						</div><!-- .col-md-4 end -->
+						<div class="col-xs-12 col-sm-6 col-md-3 footer--widget-contact">
 							<div class="footer--widget-title">
 								<h5>Get In Touch</h5>
 							</div>
@@ -1010,7 +1104,7 @@
 								<ul class="list-unstyled mb-0">
 									<li><i class="fa fa-map-marker"></i> 1220 Petersham town, Wardll St New South Wales Australia PA 6550.</li>
 									<li><i class="fa fa-phone"></i> (04) 491 570 110</li>
-									<li><i class="fa fa-envelope-o"></i> contact@zytheme.com</li>
+									<li><i class="email"></i> contact@zytheme.com</li>
 								</ul>
 							</div>
 						</div><!-- .col-md-4 end -->
