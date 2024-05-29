@@ -288,8 +288,14 @@
 				margin: 20px auto;
 				font-size: 1em;
 			}
+
+			.navbar-fixed-top.scrolled {
+				background-color: #fff !important;
+				transition: background-color 200ms linear;
+			}
 		}
 	</style>
+	
 </head>
 
 <body class="body-scroll">
@@ -404,7 +410,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-5 wow fadeInUp">
-						<img class="img-responsive center-block" src="static/img/team-4.jpg" alt="ipad" length="500px" width="450px"/>
+						<img class="img-responsive center-block" src="static/img/team-4.jpg" alt="ipad" length="800px" width="450px"/>
 					</div>
 					<!-- .col-md-6 end -->
 					<div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-1">
@@ -414,7 +420,6 @@
 						</div>
 						<div class="about-content wow fadeInUp" data-wow-duration="1s">
 							<p>NetPersonas is a pioneering platform that taps into the potential of machine learning to revolutionize the corporate photography landscape. Addressing the limitations of traditional photography methods, it offers bespoke, high-quality digital imagery solutions, ensuring alignment with corporate branding and enhancing digital presence. This innovative service caters to a diverse audience, from medium to large corporations and startups, to individual professionals keen on maintaining a robust online presence. The platform's unique selling proposition lies in its ability to provide personalized social media portraits, remote corporate photography, and brand consistency checks, thus filling a significant gap in the market</p>
-							<p>The advent of NetPersonas comes at a time when the digital workspace is expanding, and there is a growing demand for customized professional imagery. This trend presents a substantial market opportunity as businesses increasingly seek to establish their digital identity. NetPersonas stands out in the competitive landscape by offering an integrated solution that combines user-friendly features with advanced machine learning algorithms for image enhancement, background customisation, and style adaptation.</p>
 							<img class="signture" src="static/img/signture.png" alt="signture">
 						</div>
 					</div>
@@ -1136,6 +1141,23 @@
 	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 	<script src="static/js/functions.js"></script>
 	<script src="static/fontawesomefree/js/all.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$(window).scroll(function(){
+				var scroll = $(window).scrollTop();
+				if (scroll > 615) {
+					$("nav a").css('color', 'black');
+				}
+				else if(scroll < 615) {
+					$("nav a").css('color', 'white');	
+				}
+				else{
+					$("#navbar-ul-li").css("background" , "transparent");
+						
+				}
+			})
+		})
+	</script>
     
 	<div id="loom-companion-mv3" ext-id="liecbddmkiiihnedobmlmillhodjkdmb">
 		<section id="shadow-host-companion"></section>
