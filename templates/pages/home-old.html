@@ -1,0 +1,432 @@
+{% extends "layouts/base.html" %}
+{% load i18n static %}
+
+{% block title %} Home {% endblock title %}
+
+{% block overlay %}
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+{% endblock overlay %}
+
+
+
+{% block content %}
+{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+			<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+{% endif %}
+<div class="container-fluid py-4">
+	<div class="row mt-4">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card card-carousel overflow-hidden h-100 p-0">
+				<div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item h-100 active">
+							<img src="/static/img/bg-profile.jpg" class="d-block w-100" style="background-size: cover;">
+							<div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+								<div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+									<i class="ni ni-camera-compact text-dark opacity-10"></i>
+								</div>
+								<h5 class="text-white mb-1">Get started with Argon</h5>
+								<p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
+							</div>
+						</div> 
+						<div class="carousel-item h-100">
+							<img src="/static/img/vr-bg.jpg" class="d-block w-100" style="background-size: cover;">
+							<div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+								<div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+									<i class="ni ni-bulb-61 text-dark opacity-10"></i>
+								</div>
+								<h5 class="text-white mb-1">Faster way to create web pages</h5>
+								<p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
+							</div>	
+						</div>
+						<div class="carousel-item h-100">
+							<img src="/static/img/home-decor-1.jpg" class="d-block w-100" style="background-size: cover;">
+							<div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+								<div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+									<i class="ni ni-trophy text-dark opacity-10"></i>
+								</div>
+								<h5 class="text-white mb-1">Share with us your design tips!</h5>
+									<p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+							</div>
+						</div>
+						<div class="carousel-item h-100">
+							<img src="/static/img/home-decor-3.jpg" class="d-block w-100" style="background-size: cover;">
+							<div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
+								<div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
+									<i class="ni ni-trophy text-dark opacity-10"></i>
+								</div>
+								<h5 class="text-white mb-1">Share with us your design tips!</h5>
+									<p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+							</div>
+						</div>
+					</div>
+					<button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-4" id="features">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card ">
+				<div class="card-header pb-0 p-3">
+					<div class="d-flex justify-content-center">
+					  	<h3 class="mb-2">Popular Features</h3>
+					</div>
+					<div class="d-flex justify-content-center">
+						<p>The advent of NetPersonas comes at a time when the digital workspace is expanding, and there is a growing demand for customized professional imagery. <br />
+							This trend presents a substantial market opportunity as businesses increasingly seek to establish their digital identity. NetPersonas stands out in the competitive <br />
+							landscape by offering an integrated solution that combines user-friendly features with advanced machine learning algorithms.</p>
+					</div>
+					<div class="row">
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-12">
+											<img class="card-img-top" src="/static/img/initial_enhancer.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">Image Enhancement</h5>
+												<p class="card-text">Make your pics high resolution - HD, 4k and beyond.
+													Enlarge and sharpen photos for printing and web in a single click
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-12">
+											<img class="card-img-top" src="/static/img/producciones.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">Background Customization</h5>
+												<p class="card-text">Our AI Backgrounds generator uses the power of AI to create realistic, <br />
+													studio-quality product images in seconds—from anywhere and on any platform.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-lg-12">
+											<img class="card-img-top" src="/static/img/harschshivam.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">Style Adaptation	</h5>
+												<p class="card-text">AI GPTs (Generative Pre-trained Transformers) for Style Adaptation are advanced AI tools <br /> 
+													designed to assist in tailoring content to specific styles, tones, or formats.  
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row mt-4" id="preview">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card ">
+				<div class="card-header pb-0 p-3">
+					<div class="d-flex justify-content-center">
+					  	<h3 class="mb-2">Photo Editing Simplified</h3>
+					</div>
+					<div class="d-flex justify-content-center">
+						<a href="{% url 'home:upload' %}" class="btn btn-primary">Get Started</a>	
+					</div>
+				</div>			
+			</div>		
+		</div>
+	</div>
+	<div class="row mt-4" id="about-us">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card ">
+				<div class="card-header pb-0 p-3">
+					<div class="d-flex justify-content-center">
+					  	<h3 class="mb-2">About Us</h3>
+					</div>
+					<div class="d-flex">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br />
+							Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit <br />
+							in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</p>
+
+					</div>
+				</div>			
+			</div>		
+		</div>
+	</div>
+	<div class="row mt-4" id="team">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card ">
+				<div class="card-header pb-0 p-3">
+					<div class="d-flex justify-content-center">
+					  	<h3 class="mb-2">Meet The Team</h3>
+					</div>
+					<div class="d-flex">
+						<div class="row">
+							<div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
+								<div class="card">
+									<div class="card-body p-3">
+										<div class="row">
+											<div class="col-11">
+												<img class="card-img-top" src="/static/img/bruce-mars.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title">Card title</h5>
+													<p class="card-text">Some quick example text to build on the card </p>
+													<div id="more" style="display:none;">
+														<p>title and make up the bulk of the card's content.</p>
+													</div>
+													<a href="javascript:showMore()" id="link">Read More >></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
+								<div class="card">
+									<div class="card-body p-3">
+										<div class="row">
+											<div class="col-11">
+												<img class="card-img-top" src="/static/img/team-2.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+												<div class="card-body">
+													<h5 class="card-title">Card title</h5>
+													<p class="card-text">Some quick example text to build on the card </p>
+													<div id="more" style="display:none;">
+														<p>title and make up the bulk of the card's content.</p>
+													</div>
+													<a href="javascript:showMore()" id="link">Read More >></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>		
+		</div>
+	</div>
+	<div class="row mt-4" id="pricing">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card ">
+				<div class="card-header pb-0 p-3">
+					<div class="d-flex justify-content-center">
+					  	<h3 class="mb-2">Pricing</h3>
+					</div>
+					<div class="d-flex justify-content-center">
+						<p>Different prices for different plans</p>
+					</div>
+					<div class="row">
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-12">
+											<img class="card-img-top" src="/static/img/bronze.png" class="d-block" style="background-size: cover; height: 10%; width: 15%;" alt="Card image cap">
+											<div class="card-body justify-content-center">
+												<h5 class="card-title" style="color: blue;">£1.99<span style="color:rgb(134, 134, 136);font-size: small;">/month</span></h5>
+												<br>
+												<h5 class="card-title">BRONZE TIER</h5>
+												<p class="card-text">Basic profile creation and listing capabilities.</p>
+												<p class="card-text">Access to standard material listings and searches.</p>
+												<p class="card-text">Email support with a 48-hour response time.</p>
+												<p class="card-text">Data Integration: Ability to integrate with <br />
+													standard data sources such as social media platforms and basic 
+													financial transaction data..</p>
+												<div class="d-flex justify-content-center">
+													<a href="#" class="btn btn-primary">Purchase Plan</a>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-12">
+											<img class="card-img-top" src="/static/img/Silver.png" class="d-block" style="background-size: cover; height: 10%; width: 15%;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title" style="color: blue;">£5.99<span style="color:rgb(134, 134, 136);font-size: small;">/month</span></h5>
+												<br>
+												<h5 class="card-title">SILVER TIER</h5>
+												<p class="card-text">Includes all Bronze Features.</p>
+												<p class="card-text">Advanced search filters and priority listing in search <br />
+													results.</p>
+												<p class="card-text">Access to environmental impact data for listed materials.</p>
+												<p class="card-text">Live chat support.</p>
+
+												<div class="d-flex justify-content-center">
+													<a href="#" class="btn btn-primary">Purchase Plan</a>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="col-lg-12">
+											<img class="card-img-top" src="/static/img/gold.png" class="d-block" style="background-size: cover; height: 10%; width: 15%;" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title" style="color: blue;">£8.99<span style="color:rgb(134, 134, 136);font-size: small;">/month</span></h5>
+												<br>
+												<h5 class="card-title">GOLD TIER</h5>
+												<p class="card-text">Includes all Silver features.</p>
+												<p class="card-text">Premium visibility in search results and featured listings.</p>
+												<p class="card-text">Direct access to EcoMatera's logistics and sustainability <br />
+													consulting services.</p>
+												<p class="card-text">Priority matching with waste generators and acquirers.</p>
+												<p class="card-text">Dedicated account manager and 24-hour support response time.</p>
+												<div class="d-flex justify-content-center">
+													<a href="#" class="btn btn-primary">Purchase Plan</a>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>		
+		</div>
+	</div>
+	<div class="row mt-4" id="contact">
+		<div class="col-lg-12 mb-lg-0 mb-4">
+			<div class="card">
+				<div class="card-header pb-0 p-3">
+					<div class="d-flex justify-content-center">
+					  	<h3 class="mb-2">Contact Us</h3>
+					</div>
+					<!-- <div class="d-flex"> -->
+					<div class="row">
+						<div class="col-xl-5 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body p-3">
+									<div class="row">
+										<div class="card-body">
+											<h5 class="card-title">Submit Your feedback</h5>
+											<form action="" method="post">
+												{% csrf_token %}
+												<table>
+												{{ form.as_table }}                   
+													<tr>
+														<td></td>
+														<td><input type="submit" value="Submit"></td>
+													</tr>
+												</table>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+							<div class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-lg-12 zoom">
+											<img class="card-img-top" src="/static/img/unsplash.jpg" class="d-block w-100" style="background-size: cover;" alt="Card image cap">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>																												
+					<!-- </div> -->
+				</div>			
+			</div>		
+		</div>
+	</div>
+  {% include 'includes/footer.html' %}
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+
+<style>
+	.zoom {
+	  padding: 50px;
+	  /* background-color: rgb(133, 150, 133); */
+	  transition: transform .2s; /* Animation */
+	  /* width: 200px; */
+	  /* height: 200px; */
+	  margin: 0 auto;
+	}
+	
+	.zoom:hover {
+	  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+	}
+</style>
+
+<script>
+	function showMore(){
+		//removes the link
+		document.getElementById('link').parentElement.removeChild('link');
+		//shows the #more
+		document.getElementById('more').style.display = "block";
+	}
+	
+</script>
+
+<script>
+    function map_init_basic (map, options) {
+        
+        L.marker([50.5, 30.5]).addTo(map);
+        
+    }
+</script>
+
+<style>
+
+    .leaflet-container {  /* all maps */
+        width:  600px;
+        height: 400px;
+    }
+
+    #specialbigmap {
+        height: 800px;
+    }
+
+    /* Resize the "display_raw" textbox */
+    .django-leaflet-raw-textarea {
+        width: 100%;
+    }
+
+</style>
+
+{% endblock scripts %}

@@ -51,7 +51,7 @@ def index(request):
             return redirect('feedback')
     else:
         feedb = FeedbackForm()
-    return render(request, 'pages/home-update.html', {'form': feedb})
+    return render(request, 'pages/home.html', {'form': feedb})
 
 
 def upload(request):
