@@ -19,6 +19,9 @@ gunicorn==21.2.0
 
 psycopg2-binary
 # mysqlclient
+dj-database-url
+
+whitenoise[brotli]
 
 jupyter 
 notebook

@@ -2,9 +2,9 @@
 # exit on error
 set -o errexit
 
-python -m pip install --upgrade pip
+python3 -m pip3 install --upgrade pip3
 
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
-python manage.py collectstatic --no-input
-python manage.py migrate
+python3 manage.py collectstatic --no-input
+python3 manage.py migrate
