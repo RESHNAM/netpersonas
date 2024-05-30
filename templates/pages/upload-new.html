@@ -250,84 +250,76 @@
 
             <!-- USE THE NEW BOOTSTRAP TO UPDATE PAGE -->
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <!-- <button type="button" class="btn btn-primary btn-sm" href="{% url 'index' %}">Back</button> -->
-                <a href="{% url 'home:index' %}" class="btn btn-primary btn-sm">Back</a>
+            <div class="d-flex justify-content-center" style="padding-left: 1120px; padding-top: 20px;">
+                <a href="{% url 'home:index' %}" input type="submit" class="btn btn--primary">Home</a>	
             </div>
 
             <!-- About
 		    === === === === === === === === === === === === === === -->
             <section id="about" class="section about pb-0">
                 <div class="container">
-                    <div class="row mt-4">
-                        <div class="col-lg-12 mb-lg-0 mb-4">
-                            <div class="card ">
-                                <div class="card-header pb-0 p-3">
-                                    <div class="d-flex justify-content-center">
-                                          <h3 class="mb-2">Upload Image</h3>
-                                    </div>
-                                    <form class="d-flex justify-content-center" action="{% url 'home:detail_save' %}" method="POST" enctype="multipart/form-data">
-                                        {% csrf_token %}
-                                        <p>
-                                            <label>Your Name
-                                                <input type="text" name="myName"/>
-                                            </label>
-                                        </p> 
-                                        <p>
-                                            <label>Your Image File
-                                                <input type="file" name="myImage" accept="image/*" />
-                                            </label>
-                                        </p>
-                                        <p>
-                                            <input type="submit">
-                                        </p>  	
-                                    </form>
-                                </div>
-                                <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                                    <button type="button" class="btn btn-outline-primary btn-sm">Retrieve Details</button>
-                                </div> -->
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="heading heading-1 mt-70 wow fadeInUp" data-wow-duration="1s">
+                                <h2 class="heading--title">Upload Image</h2>
+                                <div class="heading--divider"></div>
+                            </div>
+                            <form class="d-flex justify-content-center" action="{% url 'home:detail_save' %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
                                 
-                                                
-                            </div>	
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <input type="text" class="form-control" name="your-name" placeholder="Your Name">
+                                </div> 
+                                
+                                <div class="col-xs-12 col-sm-12 col-md-6">
+                                    <input type="file" class="form-control" name="myImage" accept="image/*">
+                                </div> 
+                                 	
+                                <div class="col-xs-12 col-sm-12 col-md-6" style="padding-left: 500px;">
+                                    <input type="submit" class="btn btn--primary" value="submit">
+                                </div>
+                            </form>    
                         </div>
                     </div>
-                
-                    <div class="row mt-4">
-                        <div class="col-lg-12 mb-lg-0 mb-4">
-                            <div class="card z-index-2 h-100">
-                                <div class="card-header pb-0 pt-3 bg-transparent">
-                                    <h6 class="text-capitalize">User Details Overview</h6>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="heading heading-1 mt-70 wow fadeInUp" data-wow-duration="1s">
+                                <h4 class="heading--title">User Details Overview</h4>
+                                <div class="heading--divider"></div>
+                            </div>
+            
+                            <div class="table-responsive">
+                                <table class="table align-items-center ">
+                                    <tbody>
+                                        {% for active_image in active_user_image %}
+                                        <tr>
+                                            <td class="w-30">
+                                                <div class="d-flex px-2 py-1 align-items-center">
+                                                    <img class="image" src="{{ MEDIA_URL }}{{active_image.cover}}" style="height: 300px; width: 300px;">
+                                                </div>
+                                                <div class="ms-4">
+                                                    <p class="text-xs font-weight-bold mb-0">Name:</p>
+                                                    <h6 class="text-sm mb-0">{{active_image.name}}</h6>
+                                                </div>
+                                            </td>
+                                            
+                                            <!-- <p> {{active_image.author}} - {{active_image.name}} - {{active_image.cover}}</p> -->
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    
+                                </table>
+
+                                <div class="d-flex justify-content-center" style="padding-left: 500px; padding-top: 20px;">
+                                    <a href="{% url 'home:upload' %}" input type="submit" class="btn btn--primary">Enhance Image</a>	
                                 </div>
-                                <div class="table-responsive">
-                                    <table class="table align-items-center ">
-                                        <tbody>
-                                            {% for active_image in active_user_image %}
-                                            <tr>
-                                                <td class="w-30">
-                                                    <div class="d-flex px-2 py-1 align-items-center">
-                                                        <img class="image" src="{{ MEDIA_URL }}{{active_image.cover}}" style="height: 300px; width: 300px;">
-                                                  </div>
-                                                  <div class="ms-4">
-                                                        <p class="text-xs font-weight-bold mb-0">Name:</p>
-                                                        <h6 class="text-sm mb-0">{{active_image.name}}</h6>
-                                                    </div>
-                                              </td>
-                                                
-                                                <!-- <p> {{active_image.author}} - {{active_image.name}} - {{active_image.cover}}</p> -->
-                                                
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                        
-                                    </table>
 
-                                    <div class="d-flex justify-content-center" style="padding-left: 500px; padding-top: 20px;">
-                                        <a href="{% url 'home:upload' %}" input type="submit" class="btn btn--primary">Enhance Image</a>	
-                                    </div>
-
-                                    <div class="d-flex justify-content-center" style="padding-left: 500px; padding-top: 20px;">
-                                        <a href="{% url 'home:upload' %}" input type="submit" class="btn btn--primary">Background Customize</a>	
-                                    </div>
+                                <div class="d-flex justify-content-center" style="padding-left: 500px; padding-top: 20px;">
+                                    <a href="{% url 'home:upload' %}" input type="submit" class="btn btn--primary">Background Customize</a>	
                                 </div>
                             </div>
                         </div>
