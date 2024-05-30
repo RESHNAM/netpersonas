@@ -56,7 +56,7 @@ def index(request):
 
 def upload(request):
 
-    return render(request, 'pages/upload.html')
+    return render(request, 'pages/upload-new.html')
 
 
 def detail_save(request):
@@ -78,7 +78,7 @@ def detail_save(request):
         # print(active_user_image)
         # context = {'active_user_image': active_user_image}
         # return redirect('upload')
-        return render(request, "pages/upload.html", {'active_user_image': active_user_image, 'MEDIA_URL':MEDIA_URL})
+        return render(request, "pages/upload-new.html", {'active_user_image': active_user_image, 'MEDIA_URL':MEDIA_URL})
     
     elif request.method == "GET" and request.user.is_authenticated:
 
@@ -87,10 +87,10 @@ def detail_save(request):
         # print(active_user_image)
         context = {'active_user_image': active_user_image}
         # return redirect('upload')
-        return render(request, "pages/upload.html", context)
+        return render(request, "pages/upload-new.html", context)
     else:
         messages.warning(request, 'Signup First!')
-        return redirect('upload')
+        # return redirect('upload')
 
 
 def image_ai_enhance(request):

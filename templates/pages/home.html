@@ -330,7 +330,17 @@
 							<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#testimonial">Feedback</a></li>
 							<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#pricing">Pricing</a></li>
 							<li id="navbar-ul-li"><a data-scroll="scrollTo" href="#banner">Free Consultation</a></li>
-							<li id="navbar-ul-li"><a data-scroll="scrollTo" href="{% url 'login' %}">Log In</a></li>
+							{% if request.user.is_authenticated %}
+								{% if request.user.is_superuser %}
+									<li id="navbar-ul-li"><a data-scroll="scrollTo" href="{% url 'admin:index' %}">Dashboard</a></li>
+									<li id="navbar-ul-li"><a data-scroll="scrollTo" href="{% url 'admin:logout' %}">Log Out</a></li>
+								{% else %}
+									<li id="navbar-ul-li"><a data-scroll="scrollTo" href="{% url 'admin:index' %}">Dashboard</a></li>
+									<li id="navbar-ul-li"><a data-scroll="scrollTo" href="{% url 'admin:logout' %}">Log Out</a></li>
+								{% endif %}
+							{% else %}
+								<li id="navbar-ul-li"><a data-scroll="scrollTo" href="{% url 'login' %}">Log In</a></li>
+							{% endif %}
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -419,7 +429,7 @@
 							<div class="heading--divider"></div>
 						</div>
 						<div class="about-content wow fadeInUp" data-wow-duration="1s">
-							<p>NetPersonas is a pioneering platform that taps into the potential of machine learning to revolutionize the corporate photography landscape. Addressing the limitations of traditional photography methods, it offers bespoke, high-quality digital imagery solutions, ensuring alignment with corporate branding and enhancing digital presence. This innovative service caters to a diverse audience, from medium to large corporations and startups, to individual professionals keen on maintaining a robust online presence. The platform's unique selling proposition lies in its ability to provide personalized social media portraits, remote corporate photography, and brand consistency checks, thus filling a significant gap in the market</p>
+							<p>NetPersonas is a pioneering platform that taps into the potential of machine learning to revolutionize the corporate photography landscape. Addressing the limitations of traditional photography methods, it offers bespoke, high-quality digital imagery solutions, ensuring alignment with corporate branding and enhancing digital presence. This innovative service caters to a diverse audience, from medium to large corporations and startups, to individual professionals keen on maintaining a robust online presence. The platform's unique selling proposition lies in its ability to provide personalized social media portraits, remote corporate photography, and brand consistency checks, thus filling a significant gap in the market.</p>
 							<img class="signture" src="static/img/signture.png" alt="signture">
 						</div>
 					</div>
@@ -1160,8 +1170,25 @@
 					$("#navbar-ul-li").css("background" , "transparent");
 						
 				}
-			})
-		})
+			});
+		});
+
+		const sections = document.querySelectorAll('section');
+		const nav = document.querySelector('nav');
+
+		sections.forEach((section) => {
+			section.addEventListener('scroll', () => {
+				const sectionTop = section.offsetTop;
+				const sectionHeight = section.offsetHeight;
+				const navHeight = nav.offsetHeight;
+
+				if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+					nav.classList.add('active');
+				} else {
+					nav.classList.remove('active');
+				}
+			});
+		});
 	</script>
     
 	<div id="loom-companion-mv3" ext-id="liecbddmkiiihnedobmlmillhodjkdmb">
