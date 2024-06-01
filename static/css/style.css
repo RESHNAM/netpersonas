@@ -3687,7 +3687,7 @@ ul.comments-list ul.comment-children ul .comment-body .comment {
     #BOXED LAYOUT
 \*------------------------------------*/
 .body-boxed {
-  background: url(../images/background/pattern.png);
+  background: url(../img/bg1.jpg);
 }
 .body-boxed .header-fixed .affix {
   box-shadow: none;
