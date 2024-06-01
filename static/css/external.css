@@ -2030,11 +2030,7 @@
   
   @font-face {
     font-family: 'legal-Icons';
-    src:  url('fonts/legal-Icons.eot?6tknlk');
-    src:  url('fonts/legal-Icons.eot?6tknlk#iefix') format('embedded-opentype'),
-      url('fonts/legal-Icons.ttf?6tknlk') format('truetype'),
-      url('fonts/legal-Icons.woff?6tknlk') format('woff'),
-      url('fonts/legal-Icons.svg?6tknlk#legal-Icons') format('svg');
+    src:  url('fonts/legal-Icons.ttf?6tknlk');
     font-weight: normal;
     font-style: normal;
   }
