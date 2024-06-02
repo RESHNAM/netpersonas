@@ -25,15 +25,6 @@
         $(this).remove();
     });
 
-    /* ------------------ HEADER AFFIX ------------------ */
-
-    var $navAffix = $(".header-fixed .navbar-fixed-top");
-    $navAffix({
-        offset: {
-            top: 50
-        }
-    });
-
     /* ------------------  AJAX MAILCHIMP ------------------ */
 
     $('.mailchimp').ajaxChimp({
