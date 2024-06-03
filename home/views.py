@@ -314,15 +314,14 @@ def get_all_logged_in_users():
     return User.objects.filter(id__in=uid_list)
 
 
-def enhance_upload(request):
-
-    # response = requests.post('https://api-service.vanceai.com/web_api/v1/upload',
-    #     files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-    #     data={'api_token': '1234567890abcdefg'},
-    # )
+def enhance_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
 
     response = requests.post(VANCE_URL + 'upload',
-        files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
         data={'api_token': ''},
     )
 
