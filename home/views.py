@@ -322,6 +322,31 @@ def enhance_upload(request, pk):
     response = requests.post(VANCE_URL + 'upload',
         # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
         files={'file': open(image_path, 'rb')},
-        data={'api_token': ''},
+        data={'api_token': API_KEY},
     )
 
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
+def image_transform(request, uid):
+
+    json_path = "enlarge.json"
+    jparam={}
+    with open(json_path, 'rb') as f:
+        jparam = json.load(f)
+
+    data={
+        'api_token': API_KEY,
+        'uid': uid,
+        'jconfig': json.dumps(jparam),
+        # 'webhook': 'https://your-domain/path/to/webhook'
+    }
+
+    response = requests.post(VANCE_URL + 'upload', data)
+    r = response.json()
+    if r['code'] == 200:
+        print('trans_id:', r['data']['trans_id'])
+        print('current_status:', r['data']['status'])

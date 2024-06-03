@@ -16,7 +16,9 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework_api')),
 
     #vance ai urls
-    path('vance-upload-image/', views.enhance_upload, name='enhance-upload-image',),
+    path('vance-upload-image/<int:pk>/', views.enhance_upload, name='enhance-upload-image',),
+    path('vance-transform-image/<uuid:uid>/', views.image_transform, name='transform-image',),
+
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
