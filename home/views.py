@@ -350,3 +350,23 @@ def image_transform(request, uid):
     if r['code'] == 200:
         print('trans_id:', r['data']['trans_id'])
         print('current_status:', r['data']['status'])
+
+
+def check_progress(request, trans_id):
+    remoteFileUrl = 'https://api-service.vanceai.com/web_api/v1/progress?trans_id=trans_id&api_token=API_KEY'
+    response = requests.get(remoteFileUrl)
+    r = response.json()
+    if r['code'] == 200:
+        print('status:', r['data']['status'])
+
+
+def download_image(request, trans_id):
+    remoteFileUrl = 'https://api-service.vanceai.com/web_api/v1/download?trans_id=trans_id&api_token=API_KEY'
+    dst_path = 'demo.jpg'
+    response = requests.get(remoteFileUrl, stream=True)
+    f = open(dst_path, "wb")
+    for chunk in response.iter_content(chunk_size=512):
+        if chunk:
+            f.write(chunk)
+    f.close()
+
