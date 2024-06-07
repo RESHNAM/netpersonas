@@ -1,22 +1,18 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.models import User, Group
 from rest_framework import permissions, viewsets
-from django.http import JsonResponse, Http404
+from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.request import Request
-from rest_framework.generics import GenericAPIView
 from rest_framework import generics
 from django.contrib.sessions.models import Session
 from django.utils import timezone
 from django.conf import settings
 from django.templatetags.static import static
 
-from .models import Image, Feedback
+from .models import Image
 from django.contrib import messages
 from .forms import FeedbackForm
 from .serializers import GroupSerializer, UserSerializer, ImageSerializer
@@ -31,6 +27,7 @@ from urllib.request import urlretrieve
 
 # using requests library
 import requests
+from security import safe_requests
 
 API_KEY = os.environ.get('API_KEY')
 MEDIA_URL = settings.MEDIA_URL
@@ -274,7 +271,7 @@ def Denoidebluenha(request, pk):
             print("DEEP-RESPONSE-url: ",final_object_url)
         elif response_json['status'] in ['received', 'in_progress']:
             while response_json['status'] == 'in_progress':
-                response = requests.get(f'https://deep-image.ai/rest_api/result/{response_json["job"]}',
+                response = safe_requests.get(f'https://deep-image.ai/rest_api/result/{response_json["job"]}',
                             headers=headers)
                 response_json = response.json()
                 time.sleep(1)
@@ -364,7 +361,7 @@ def check_progress(request, trans_id):
 def download_image(request, trans_id):
     remoteFileUrl = 'https://api-service.vanceai.com/web_api/v1/download?trans_id=trans_id&api_token=API_KEY'
     dst_path = 'demo.jpg'
-    response = requests.get(remoteFileUrl, stream=True)
+    response = safe_requests.get(remoteFileUrl, stream=True)
     f = open(dst_path, "wb")
     for chunk in response.iter_content(chunk_size=512):
         if chunk:
