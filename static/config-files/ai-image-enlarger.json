@@ -1,0 +1,12 @@
+{
+    "name": "enlarge3",
+    "config": {
+        "module": "enlarge3",
+        "module_params": {
+            "model_name": "EnlargeStandard_2x_Stable",
+            "suppress_noise": 40,
+            "remove_blur": 60,
+            "scale": 2
+        }
+    }
+}

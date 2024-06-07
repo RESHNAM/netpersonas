@@ -1,0 +1,9 @@
+{
+    "name": "matting",
+    "config": {
+        "module": "matting",
+        "module_params": {
+            "model_name": "MattingStable"
+        }
+    }
+}

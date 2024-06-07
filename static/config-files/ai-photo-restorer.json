@@ -1,0 +1,9 @@
+{
+    "name": "crease_repair",
+    "config": {
+        "module": "crease_repair",
+        "module_params": {
+            "model_name": "CreaseRepairStable"
+        }
+    }
+}
