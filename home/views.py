@@ -14,6 +14,7 @@ from rest_framework import generics
 from django.contrib.sessions.models import Session
 from django.utils import timezone
 from django.conf import settings
+from django.templatetags.static import static
 
 from .models import Image, Feedback
 from django.contrib import messages
@@ -331,9 +332,9 @@ def enhance_upload(request, pk):
         print('uid:', r['data']['uid'])
 
 
-def image_transform(request, uid):
+def image_transform_enhance(request, uid):
 
-    json_path = "enlarge.json"
+    json_path = static('config-files/ai-photo-restorer-enhance.json')
     jparam={}
     with open(json_path, 'rb') as f:
         jparam = json.load(f)

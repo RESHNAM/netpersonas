@@ -17,7 +17,7 @@ urlpatterns = [
 
     #vance ai urls
     path('vance-upload-image/<int:pk>/', views.enhance_upload, name='enhance-upload-image',),
-    path('vance-transform-image/<uuid:uid>/', views.image_transform, name='transform-image',),
+    path('vance-transform-image/<uuid:uid>/', views.image_transform_enhance, name='transform-image',),
     path('progress/<uuid:trans_id>/', views.check_progress, name='progress-check',),
     path('download/<uuid:trans_id>/', views.download_image, name='download-check',),
 
