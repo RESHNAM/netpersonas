@@ -14,15 +14,9 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
         model = Group
         fields = ['url', 'name']
 
-
-class ImageSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Image
-        fields = ['url',
-                  'author', 
-                  'name', 
-                  'cover',
-                  'created_at', 
-                  'updated_at'
-                ]
-
+class ImageSerializer(serializers.Serializer):
+    author = UserSerializer()
+    name = serializers.CharField(max_length=200)
+    cover = serializers.ImageField()
+    created_at = serializers.DateTimeField()
+    updated_at = serializers.DateTimeField()
