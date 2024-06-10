@@ -64,7 +64,7 @@ def detail_save(request):
     if request.method == "POST" and request.user.is_authenticated: 
 
         #Get Name from Request Post
-        my_name = request.POST.get('myName')
+        my_name = request.POST.get('your-name')
         #Get Image from Request Files
         my_image = request.FILES.get('myImage')
         #Get System User
