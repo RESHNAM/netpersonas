@@ -76,22 +76,18 @@ def detail_save(request):
 
         # fetch the data and render it to the template
         active_user_image = Image.objects.filter(author=sys_user, name=my_name)
-        # print(active_user_image)
-        # context = {'active_user_image': active_user_image}
-        # return redirect('upload')
+
         return render(request, "pages/upload-new.html", {'active_user_image': active_user_image, 'MEDIA_URL':MEDIA_URL})
     
     elif request.method == "GET" and request.user.is_authenticated:
 
         # fetch the data and render it to the template
         active_user_image = Image.objects.filter(author=sys_user, name=my_name)
-        # print(active_user_image)
         context = {'active_user_image': active_user_image}
-        # return redirect('upload')
+
         return render(request, "pages/upload-new.html", context)
     else:
         messages.warning(request, 'Signup First!')
-        # return redirect('upload')
 
 
 def image_ai_enhance(request):
