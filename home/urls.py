@@ -26,7 +26,7 @@ urlpatterns = [
     path('lightadjust-upload-image/<int:pk>/', views.lightadjust_image_upload, name='light-adjust-image',),
     path('brandelement-upload-image/<int:pk>/', views.brandelement_image_upload, name='brand-element-image',),
     path('customfilter-upload-image/<int:pk>/', views.customfilter_image_upload, name='custom-filter-image',),
-    
+
     #vance ai urls for transformation
     path('vance-transform-image/<uuid:uid>/', views.image_transform_enhance, name='transform-image',),
     path('progress/<uuid:trans_id>/', views.check_progress, name='progress-check',),
