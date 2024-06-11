@@ -328,6 +328,159 @@ def enhance_upload(request, pk):
         print('uid:', r['data']['uid'])
 
 
+def backcustom_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
+
+    response = requests.post(VANCE_URL + 'upload',
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
+        data={'api_token': API_KEY},
+    )
+
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
+def scale_image_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
+
+    response = requests.post(VANCE_URL + 'upload',
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
+        data={'api_token': API_KEY},
+    )
+
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
+def facialrec_image_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
+
+    response = requests.post(VANCE_URL + 'upload',
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
+        data={'api_token': API_KEY},
+    )
+
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
+def styletransfer_image_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
+
+    response = requests.post(VANCE_URL + 'upload',
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
+        data={'api_token': API_KEY},
+    )
+
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
+def colourcorrection_image_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
+
+    response = requests.post(VANCE_URL + 'upload',
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
+        data={'api_token': API_KEY},
+    )
+
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
+def faceretouch_image_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
+
+    response = requests.post(VANCE_URL + 'upload',
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
+        data={'api_token': API_KEY},
+    )
+
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
+def lightadjust_image_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
+
+    response = requests.post(VANCE_URL + 'upload',
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
+        data={'api_token': API_KEY},
+    )
+
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
+def brandelement_image_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
+
+    response = requests.post(VANCE_URL + 'upload',
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
+        data={'api_token': API_KEY},
+    )
+
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
+def customfilter_image_upload(request, pk):
+    #Get the user image from db
+    image = get_object(request, pk)
+    image_path = image.cover
+
+    response = requests.post(VANCE_URL + 'upload',
+        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
+        files={'file': open(image_path, 'rb')},
+        data={'api_token': API_KEY},
+    )
+
+    r = response.json()
+
+    if r['code'] == 200:
+        print('uid:', r['data']['uid'])
+
+
 def image_transform_enhance(request, uid):
 
     json_path = static('config-files/ai-photo-restorer-enhance.json')
