@@ -314,8 +314,10 @@ def get_all_logged_in_users():
 def enhance_upload(request, pk):
     #Get the user image from db
     image = get_object(request, pk)
+    print("IMAGE: ", image)
     image_path = image.cover
-
+    print("IMAGE PATH: ", image_path)
+    
     response = requests.post(VANCE_URL + 'upload',
         # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
         files={'file': open(image_path, 'rb')},

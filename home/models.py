@@ -10,6 +10,7 @@ class Image(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     cover = models.ImageField(upload_to='images')
+    cover_refined = models.ImageField(upload_to='images', null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
