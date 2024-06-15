@@ -311,214 +311,109 @@ def get_all_logged_in_users():
     return User.objects.filter(id__in=uid_list)
 
 
-def enhance_upload(request, pk):
-    #Get the user image from db
+# AI Libraries
+
+import os
+import time
+from PIL import Image
+import numpy as np
+import tensorflow as tf
+import tensorflow_hub as hub
+import matplotlib.pyplot as plt
+os.environ["TFHUB_DOWNLOAD_PROGRESS"] = "True"
+
+
+def preprocess_image(image_path):
+  """ Loads image from path and preprocesses to make it model ready
+      Args:
+        image_path: Path to the image file
+  """
+  hr_image = tf.image.decode_image(tf.io.read_file(image_path))
+  # If PNG, remove the alpha channel. The model only supports
+  # images with 3 color channels.
+  if hr_image.shape[-1] == 4:
+    hr_image = hr_image[...,:-1]
+  hr_size = (tf.convert_to_tensor(hr_image.shape[:-1]) // 4) * 4
+  hr_image = tf.image.crop_to_bounding_box(hr_image, 0, 0, hr_size[0], hr_size[1])
+  hr_image = tf.cast(hr_image, tf.float32)
+  return tf.expand_dims(hr_image, 0)
+
+def save_image(image, filename):
+  """
+    Saves unscaled Tensor Images.
+    Args:
+      image: 3D image tensor. [height, width, channels]
+      filename: Name of the file to save.
+  """
+  if not isinstance(image, Image.Image):
+    image = tf.clip_by_value(image, 0, 255)
+    image = Image.fromarray(tf.cast(image, tf.uint8).numpy())
+  image.save("%s.jpg" % filename)
+  print("Saved as %s.jpg" % filename)
+
+
+def plot_image(image, title=""):
+  """
+    Plots images from image tensors.
+    Args:
+      image: 3D image tensor. [height, width, channels].
+      title: Title to display in the plot.
+  """
+  image = np.asarray(image)
+  image = tf.clip_by_value(image, 0, 255)
+  image = Image.fromarray(tf.cast(image, tf.uint8).numpy())
+  plt.imshow(image)
+  plt.axis("off")
+  plt.title(title)
+
+
+# Defining helper functions
+def downscale_image(image):
+    """
+        Scales down images using bicubic downsampling.
+        Args:
+            image: 3D or 4D tensor of preprocessed image
+    """
+    image_size = []
+    if len(image.shape) == 3:
+        image_size = [image.shape[1], image.shape[0]]
+    else:
+        raise ValueError("Dimension mismatch. Can work only on single image.")
+
+    image = tf.squeeze(
+        tf.cast(
+            tf.clip_by_value(image, 0, 255), tf.uint8))
+
+    lr_image = np.asarray(
+        Image.fromarray(image.numpy())
+        .resize([image_size[0] // 4, image_size[1] // 4],
+        Image.BICUBIC))
+
+    lr_image = tf.expand_dims(lr_image, 0)
+    lr_image = tf.cast(lr_image, tf.float32)
+    return lr_image
+
+
+def ai_image_process(request, pk):
     image = get_object(request, pk)
-    print("IMAGE: ", image)
     image_path = image.cover
-    print("IMAGE PATH: ", image_path)
+    SAVED_MODEL_PATH = ""
+
+    hr_image = preprocess_image(image_path)
+
+    # Plotting Original Resolution image
+    plot_image(tf.squeeze(hr_image), title="Original Image" + " " + image_path)
+    save_image(tf.squeeze(hr_image), filename="Original Image" + " " + image_path)
+
+    model = hub.load(SAVED_MODEL_PATH)
+    start = time.time()
+    fake_image = model(hr_image)
+    fake_image = tf.squeeze(fake_image)
+    print("Time Taken: %f" % (time.time() - start))
+
+    # Plotting Super Resolution Image
+    plot_image(tf.squeeze(fake_image), title="Super Resolution" + " " + image_path)
+    save_image(tf.squeeze(fake_image), filename="Super Resolution" + " " + image_path)
+
     
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def backcustom_upload(request, pk):
-    #Get the user image from db
-    image = get_object(request, pk)
-    image_path = image.cover
-
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def scale_image_upload(request, pk):
-    #Get the user image from db
-    image = get_object(request, pk)
-    image_path = image.cover
-
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def facialrec_image_upload(request, pk):
-    #Get the user image from db
-    image = get_object(request, pk)
-    image_path = image.cover
-
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def styletransfer_image_upload(request, pk):
-    #Get the user image from db
-    image = get_object(request, pk)
-    image_path = image.cover
-
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def colourcorrection_image_upload(request, pk):
-    #Get the user image from db
-    image = get_object(request, pk)
-    image_path = image.cover
-
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def faceretouch_image_upload(request, pk):
-    #Get the user image from db
-    image = get_object(request, pk)
-    image_path = image.cover
-
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def lightadjust_image_upload(request, pk):
-    #Get the user image from db
-    image = get_object(request, pk)
-    image_path = image.cover
-
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def brandelement_image_upload(request, pk):
-    #Get the user image from db
-    image = get_object(request, pk)
-    image_path = image.cover
-
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def customfilter_image_upload(request, pk):
-    #Get the user image from db
-    image = get_object(request, pk)
-    image_path = image.cover
-
-    response = requests.post(VANCE_URL + 'upload',
-        # files={'file': open('/Users/vanceai/Downloads/cat.jpg', 'rb')},
-        files={'file': open(image_path, 'rb')},
-        data={'api_token': API_KEY},
-    )
-
-    r = response.json()
-
-    if r['code'] == 200:
-        print('uid:', r['data']['uid'])
-
-
-def image_transform_enhance(request, uid):
-
-    json_path = static('config-files/ai-photo-restorer-enhance.json')
-    jparam={}
-    with open(json_path, 'rb') as f:
-        jparam = json.load(f)
-
-    data={
-        'api_token': API_KEY,
-        'uid': uid,
-        'jconfig': json.dumps(jparam),
-        # 'webhook': 'https://your-domain/path/to/webhook'
-    }
-
-    response = requests.post(VANCE_URL + 'upload', data)
-    r = response.json()
-    if r['code'] == 200:
-        print('trans_id:', r['data']['trans_id'])
-        print('current_status:', r['data']['status'])
-
-
-def check_progress(request, trans_id):
-    remoteFileUrl = 'https://api-service.vanceai.com/web_api/v1/progress?trans_id=trans_id&api_token=API_KEY'
-    response = requests.get(remoteFileUrl)
-    r = response.json()
-    if r['code'] == 200:
-        print('status:', r['data']['status'])
-
-
-def download_image(request, trans_id):
-    remoteFileUrl = 'https://api-service.vanceai.com/web_api/v1/download?trans_id=trans_id&api_token=API_KEY'
-    dst_path = 'demo.jpg'
-    response = requests.get(remoteFileUrl, stream=True)
-    f = open(dst_path, "wb")
-    for chunk in response.iter_content(chunk_size=512):
-        if chunk:
-            f.write(chunk)
-    f.close()
 

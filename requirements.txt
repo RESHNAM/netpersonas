@@ -1,7 +1,7 @@
 # Core
 django==4.2.9
-python-dotenv==1.0.1
-str2bool==1.1
+python-dotenv
+str2bool
 Pillow
 djangorestframework
 markdown
@@ -14,15 +14,14 @@ django-admin-argon-dashboard==1.0.16
 fontawesomefree
 
 # Deployment
-whitenoise==6.6.0
-gunicorn==21.2.0 
+whitenoise
+gunicorn
 uvicorn
 
 psycopg2-binary
 # mysqlclient
 dj-database-url
 
-whitenoise[brotli]
 
 jupyter 
 notebook
@@ -33,3 +32,5 @@ scikit-learn
 joblib
 keras
 tensorflow
+tensorflow-hub
+matplotlib
