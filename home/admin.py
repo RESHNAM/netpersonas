@@ -3,7 +3,7 @@ from django.contrib.gis import admin as adminz
 from .models import *
 
 # Register your models here.
-@admin.register(Image)
+@admin.register(Images)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ("author","name","cover","created_at","updated_at")
 

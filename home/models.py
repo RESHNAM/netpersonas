@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.contrib.gis.db import models as modelz
 
 # Create your models here.
-class Image(models.Model):
+class Images(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     cover = models.ImageField(upload_to='images')

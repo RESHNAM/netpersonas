@@ -16,7 +16,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.templatetags.static import static
 
-from .models import Image, Feedback
+from .models import Images, Feedback
 from django.contrib import messages
 from .forms import FeedbackForm
 from .serializers import GroupSerializer, UserSerializer, ImageSerializer
@@ -71,18 +71,18 @@ def detail_save(request):
         sys_user = User.objects.get(id=request.user.id)
 
         #Save the image to database
-        Image.objects.create(author=sys_user, name=my_name, cover=my_image)
+        Images.objects.create(author=sys_user, name=my_name, cover=my_image)
         messages.success(request, "Image Uploaded Successfully!")
 
         # fetch the data and render it to the template
-        active_user_image = Image.objects.filter(author=sys_user, name=my_name)
+        active_user_image = Images.objects.filter(author=sys_user, name=my_name)
 
         return render(request, "pages/upload-new.html", {'active_user_image': active_user_image, 'MEDIA_URL':MEDIA_URL})
     
     elif request.method == "GET" and request.user.is_authenticated:
 
         # fetch the data and render it to the template
-        active_user_image = Image.objects.filter(author=sys_user, name=my_name)
+        active_user_image = Images.objects.filter(author=sys_user, name=my_name)
         context = {'active_user_image': active_user_image}
 
         return render(request, "pages/upload-new.html", context)
@@ -160,7 +160,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class ImageViewSet(viewsets.ModelViewSet):
     
-    queryset = Image.objects.all().order_by('name')
+    queryset = Images.objects.all().order_by('name')
     serializer_class = ImageSerializer(queryset)
     permission_classes = [permissions.IsAuthenticated]
 
@@ -169,7 +169,7 @@ class ImageListView(generics.ListCreateAPIView):
     """
     API endpoint that allows images to be viewed or created.
     """
-    queryset = Image.objects.all().order_by('-created_at')
+    queryset = Images.objects.all().order_by('-created_at')
     serializer_class = ImageSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -196,8 +196,8 @@ class ImageDetailView(APIView):
 
     def get_object(self, pk):
         try:
-            return Image.objects.get(pk=pk)
-        except Image.DoesNotExist:
+            return Images.objects.get(pk=pk)
+        except Images.DoesNotExist:
             raise Http404
 
     def get(self, request, pk, format=None):
@@ -228,8 +228,8 @@ All the Process that Images are exposed to.
 def get_object(self, request):
     # print("ONE: ",request)
     try:
-        return Image.objects.get(pk=request)
-    except Image.DoesNotExist:
+        return Images.objects.get(pk=request)
+    except Images.DoesNotExist:
         raise Http404
 
 #Denoising, deblurring and enhancing lighting 
@@ -397,7 +397,7 @@ def downscale_image(image):
 def ai_image_process(request, pk):
     image = get_object(request, pk)
     image_path = image.cover
-    SAVED_MODEL_PATH = ""
+    SAVED_MODEL_PATH = "https://tfhub.dev/captain-pool/esrgan-tf2/1"
 
     hr_image = preprocess_image(image_path)
 
