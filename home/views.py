@@ -34,6 +34,8 @@ import requests
 
 API_KEY = os.environ.get('API_KEY')
 MEDIA_URL = settings.MEDIA_URL
+MEDIA_ROOT = settings.MEDIA_ROOT
+LOCALHOST = 'http://127.0.0.1:8000'
 VANCE_URL = 'https://api-service.vanceai.com/web_api/v1/'
 
 # Create your views here.
@@ -324,47 +326,50 @@ os.environ["TFHUB_DOWNLOAD_PROGRESS"] = "True"
 
 
 def preprocess_image(image_path):
-  """ Loads image from path and preprocesses to make it model ready
+    """ Loads image from path and preprocesses to make it model ready
       Args:
         image_path: Path to the image file
-  """
-  hr_image = tf.image.decode_image(tf.io.read_file(image_path))
-  # If PNG, remove the alpha channel. The model only supports
-  # images with 3 color channels.
-  if hr_image.shape[-1] == 4:
-    hr_image = hr_image[...,:-1]
-  hr_size = (tf.convert_to_tensor(hr_image.shape[:-1]) // 4) * 4
-  hr_image = tf.image.crop_to_bounding_box(hr_image, 0, 0, hr_size[0], hr_size[1])
-  hr_image = tf.cast(hr_image, tf.float32)
-  return tf.expand_dims(hr_image, 0)
+    """
+    #hr_image = tf.image.decode_image(tf.io.read_file(image_path))
+    hr_image = np.asarray(image_path)
+    # If PNG, remove the alpha channel. The model only supports
+    # images with 3 color channels.
+    if hr_image.shape[-1] == 4:
+        hr_image = hr_image[...,:-1]
+    hr_size = (tf.convert_to_tensor(hr_image.shape[:-1]) // 4) * 4
+    hr_image = tf.image.crop_to_bounding_box(hr_image, 0, 0, hr_size[0], hr_size[1])
+    hr_image = tf.cast(hr_image, tf.float32)
+    print("HR IMAGE PREPROCESS: ", hr_image)
+
+    return tf.expand_dims(hr_image, 0)
 
 def save_image(image, filename):
-  """
+    """
     Saves unscaled Tensor Images.
     Args:
       image: 3D image tensor. [height, width, channels]
       filename: Name of the file to save.
-  """
-  if not isinstance(image, Image.Image):
-    image = tf.clip_by_value(image, 0, 255)
-    image = Image.fromarray(tf.cast(image, tf.uint8).numpy())
-  image.save("%s.jpg" % filename)
-  print("Saved as %s.jpg" % filename)
+    """
+    if not isinstance(image, Image.Image):
+        image = tf.clip_by_value(image, 0, 255)
+        image = Image.fromarray(tf.cast(image, tf.uint8).numpy())
+    image.save(filename)
+    # print("Saved as %s.jpg" % filename)
 
 
-def plot_image(image, title=""):
-  """
+def plot_image(image, title):
+    """
     Plots images from image tensors.
     Args:
       image: 3D image tensor. [height, width, channels].
       title: Title to display in the plot.
-  """
-  image = np.asarray(image)
-  image = tf.clip_by_value(image, 0, 255)
-  image = Image.fromarray(tf.cast(image, tf.uint8).numpy())
-  plt.imshow(image)
-  plt.axis("off")
-  plt.title(title)
+    """
+    image = np.asarray(image)
+    image = tf.clip_by_value(image, 0, 255)
+    image = Image.fromarray(tf.cast(image, tf.uint8).numpy())
+    plt.imshow(image)
+    plt.axis("off")
+    plt.title(title)
 
 
 # Defining helper functions
@@ -396,14 +401,19 @@ def downscale_image(image):
 
 def ai_image_process(request, pk):
     image = get_object(request, pk)
-    image_path = image.cover
-    SAVED_MODEL_PATH = "https://tfhub.dev/captain-pool/esrgan-tf2/1"
+    image_path = os.path.join(MEDIA_ROOT + '/' + str(image.cover))
+    SAVED_MODEL_PATH = os.path.join(MEDIA_ROOT + '/' + "tensorflow")
+    print("SAVED MODEL PATH: ",SAVED_MODEL_PATH)
+  
+    img = Image.open(image_path)
 
-    hr_image = preprocess_image(image_path)
+    hr_image = preprocess_image(img)
 
     # Plotting Original Resolution image
-    plot_image(tf.squeeze(hr_image), title="Original Image" + " " + image_path)
-    save_image(tf.squeeze(hr_image), filename="Original Image" + " " + image_path)
+    plot_image(tf.squeeze(hr_image), title=str(image.cover))
+    print("PLOT IMAGE: ", plot_image)
+    save_image(tf.squeeze(hr_image), filename=image_path)
+    print("SAVE IMAGE: ", save_image)
 
     model = hub.load(SAVED_MODEL_PATH)
     start = time.time()
@@ -412,8 +422,8 @@ def ai_image_process(request, pk):
     print("Time Taken: %f" % (time.time() - start))
 
     # Plotting Super Resolution Image
-    plot_image(tf.squeeze(fake_image), title="Super Resolution" + " " + image_path)
-    save_image(tf.squeeze(fake_image), filename="Super Resolution" + " " + image_path)
+    plot_image(tf.squeeze(fake_image), title="Super Resolution" + " " + str(image.cover))
+    save_image(tf.squeeze(fake_image), filename="Super Resolution" + " " + str(image.cover))
 
     
 
