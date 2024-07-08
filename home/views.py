@@ -35,6 +35,7 @@ import requests
 API_KEY = os.environ.get('API_KEY')
 MEDIA_URL = settings.MEDIA_URL
 MEDIA_ROOT = settings.MEDIA_ROOT
+MODEL_ROOT = settings.MODEL_ROOT
 LOCALHOST = 'http://127.0.0.1:8000'
 VANCE_URL = 'https://api-service.vanceai.com/web_api/v1/'
 
@@ -323,6 +324,21 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import matplotlib.pyplot as plt
 os.environ["TFHUB_DOWNLOAD_PROGRESS"] = "True"
+import tensorflow_datasets as tfds
+import warnings
+import requests
+import base64
+import cv2
+import torch
+from torchvision import models, transforms
+from gfpgan.utils import GFPGANer
+from realesrgan.utils import RealESRGANer
+from basicsr.archs.srvgg_arch import SRVGGNetCompact
+from IPython.display import display
+import requests
+from diffusers import DiffusionPipeline, StableDiffusionXLImg2ImgPipeline 
+from torchvision.transforms import ToTensor, Normalize, ConvertImageDtype
+
 
 
 def preprocess_image(image_path):
@@ -399,31 +415,130 @@ def downscale_image(image):
     return lr_image
 
 
+# This function downloads a file from a given URL and saves it with the specified filename.
+# It streams the content, writing it in chunks to handle large files without consuming too much memory.
+# It also prints out the status of the download.
+def download_file(url, filename):
+    response = requests.get(url, stream=True)
+    if response.status_code == 200:
+        with open(filename, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=1024):
+                f.write(chunk)
+        print(f"Downloaded {filename}")
+    else:
+        print(f"Failed to download {filename}. Status code: {response.status_code}")
+
+
+# # Function to upscale image with RealESRGAN
+# def upscale_image(image_path, output_path):
+#     img = cv2.imread(image_path, cv2.IMREAD_UNCHANGED)
+#     # Upscale the image with RealESRGAN
+#     output, _ = realesrganer.enhance(img, outscale=4)
+#     cv2.imwrite(output_path, output)
+#     return output
+
+
 def ai_image_process(request, pk):
     image = get_object(request, pk)
     image_path = os.path.join(MEDIA_ROOT + '/' + str(image.cover))
-    SAVED_MODEL_PATH = os.path.join(MEDIA_ROOT + '/' + "tensorflow")
-    print("SAVED MODEL PATH: ",SAVED_MODEL_PATH)
+    output_path = os.path.join(MEDIA_ROOT + '/' + "images" + '/' + "tensorflow" + '/' + "images")
+    # SAVED_MODEL_PATH = "https://tfhub.dev/captain-pool/esrgan-tf2/1"
+
+    warnings.filterwarnings("ignore", category=UserWarning)
   
     img = Image.open(image_path)
 
-    hr_image = preprocess_image(img)
+    # hr_image = preprocess_image(img)
 
-    # Plotting Original Resolution image
-    plot_image(tf.squeeze(hr_image), title=str(image.cover))
-    print("PLOT IMAGE: ", plot_image)
-    save_image(tf.squeeze(hr_image), filename=image_path)
-    print("SAVE IMAGE: ", save_image)
+    # # Plotting Original Resolution image
+    # plot_image(tf.squeeze(hr_image), title=str(image.cover))
+    # print("PLOT IMAGE: ", plot_image)
+    # save_image(tf.squeeze(hr_image), filename=image_path)
+    # print("SAVE IMAGE: ", save_image)
 
-    model = hub.load(SAVED_MODEL_PATH)
-    start = time.time()
-    fake_image = model(hr_image)
-    fake_image = tf.squeeze(fake_image)
-    print("Time Taken: %f" % (time.time() - start))
+    # from keras import backend as K
+    # K.clear_session()
 
-    # Plotting Super Resolution Image
-    plot_image(tf.squeeze(fake_image), title="Super Resolution" + " " + str(image.cover))
-    save_image(tf.squeeze(fake_image), filename="Super Resolution" + " " + str(image.cover))
+
+    # model = hub.load(SAVED_MODEL_PATH)
+    # start = time.time()
+    # fake_image = model(hr_image)
+    # fake_image = tf.squeeze(fake_image)
+    # print("Time Taken: %f" % (time.time() - start))
+
+    # # Plotting Super Resolution Image
+    # plot_image(tf.squeeze(fake_image), title="Super Resolution" + " " + str(image.cover))
+    # print("SUPER PLOT IMAGE: ", plot_image)
+    # save_image(tf.squeeze(fake_image), filename="Super Resolution" + " " + str(image.cover))
+    # print("SUPER SAVE IMAGE: ", save_image)
+
+    # URLs for the different model weights
+    model_urls = {
+        # This dictionary contains URLs from which the model weights can be downloaded.
+        # Each key is a model file name and the corresponding value is the download URL.
+        'realesr-general-x4v3.pth': "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesr-general-x4v3.pth",
+        'GFPGANv1.4.pth': "https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.4.pth",
+        #'RestoreFormer.pth': "https://github.com/TencentARC/GFPGAN/releases/download/v1.3.4/RestoreFormer.pth",
+        #'CodeFormer.pth': "https://github.com/TencentARC/GFPGAN/releases/download/v1.3.4/CodeFormer.pth",
+    }
+
+    # Create a directory for the weights if it doesn't exist
+    os.makedirs('weights', exist_ok=True)
+
+    # This loop goes through the dictionary of model URLs, checks if the file already exists locally,
+    # and if not, it uses the 'download_file' function to download and save the weights.
+    for filename, url in model_urls.items():
+        file_path = os.path.join('weights', filename)
+        if not os.path.exists(file_path):
+            print(f"Downloading {filename}...")
+            download_file(url, file_path)
+        else:
+            print(f"{filename} already exists. Skipping download.")
+
+    # This line of code prints the list of files in the 'weights' directory.
+    # It's used to verify that the required model weights have been downloaded successfully.
+    print(os.listdir('weights'))
+
+    # Load RealESRGAN model
+    # realesrgan_model_path = 'weights/realesr-general-x4v3.pth'
+    realesrgan_model_path = os.path.join(MODEL_ROOT + '/' + "realesr-general-x4v3.pth")
+    print("MODEL PATH: ",realesrgan_model_path)
+
+    # Initialize RealESRGAN
+    sr_model = SRVGGNetCompact(num_in_ch=3, num_out_ch=3, num_feat=64, num_conv=32, upscale=4, act_type='prelu')
+    half = True if torch.cuda.is_available() else False
+    realesrganer = RealESRGANer(scale=4, model_path=realesrgan_model_path, model=sr_model, tile=0, tile_pad=10, pre_pad=0, half=half)
+
+    img = cv2.imread(image_path, cv2.IMREAD_UNCHANGED)
+
+    # Upscale the image with RealESRGAN
+    output, _ = realesrganer.enhance(img, outscale=4)
+    cv2.imwrite(output_path, output)
+    return output
+
+
+#Background Customisation Libraries
+
+
+
+def background_customisation_process(request, pk):
+    image = get_object(request, pk)
+    image_path = os.path.join(MEDIA_ROOT + '/' + str(image.cover))
+
+
+#Face Recognition Libraries
+
+
+def face_recognition_process(request, pk):
+    image = get_object(request, pk)
+    image_path = os.path.join(MEDIA_ROOT + '/' + str(image.cover))
+
+    
+
+
+
+
+
 
     
 

@@ -195,6 +195,8 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MODEL_URL = 'weights/'
+MODEL_ROOT = os.path.join(BASE_DIR, 'weights')
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:

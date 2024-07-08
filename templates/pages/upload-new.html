@@ -307,7 +307,11 @@
                                         </tr>
                                         <div class="d-flex justify-content-left" style="padding-left: 500px; padding-top: 20px;">
                                             <a href="{% url 'home:aiimage' active_image.id %}" input type="submit" class="btn btn--primary">Enhance Image Quality</a>	
-                                            <!-- <a href="#" input type="submit" class="btn btn--primary">Enhance Image Quality</a> -->
+                                        </div>
+
+                                        <div class="d-flex justify-content-left" style="padding-left: 500px; padding-top: 20px;">
+                                            <a href="{% url 'home:backgroundcustom' active_image.id %}" input type="submit" class="btn btn--primary">Background Customisation</a>	
+                                            
                                         </div>
                                         {% endfor %}
                                     </tbody>

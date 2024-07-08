@@ -16,6 +16,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework_api')),
 
     path('aiimage/<int:pk>/', views.ai_image_process, name='aiimage',),
+    path('backgroundcustom/<int:pk>/', views.background_customisation_process, name='backgroundcustom',),
+    path('facerecognition/<int:pk>/', views.face_recognition_process, name='facerecognition',),
 
     
 ]
