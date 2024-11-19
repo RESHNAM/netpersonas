@@ -256,7 +256,7 @@ def Denoidebluenha(request, pk):
     data_dumped = {"parameters": json.dumps(data)}
 
     response = requests.post('https://deep-image.ai/rest_api/process_result', headers=headers, files={'image': image_path},
-                data=data_dumped)
+                data=data_dumped, timeout=60)
     
     print("DEEP-RESPONSE: ",response)
 
@@ -274,7 +274,7 @@ def Denoidebluenha(request, pk):
         elif response_json['status'] in ['received', 'in_progress']:
             while response_json['status'] == 'in_progress':
                 response = requests.get(f'https://deep-image.ai/rest_api/result/{response_json["job"]}',
-                            headers=headers)
+                            headers=headers, timeout=60)
                 response_json = response.json()
                 time.sleep(1)
             if response_json['status'] == 'complete':
@@ -419,7 +419,7 @@ def downscale_image(image):
 # It streams the content, writing it in chunks to handle large files without consuming too much memory.
 # It also prints out the status of the download.
 def download_file(url, filename):
-    response = requests.get(url, stream=True)
+    response = requests.get(url, stream=True, timeout=60)
     if response.status_code == 200:
         with open(filename, 'wb') as f:
             for chunk in response.iter_content(chunk_size=1024):
